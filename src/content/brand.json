@@ -1,0 +1,76 @@
+{
+  "identity": {
+    "name_ko": "그룹비",
+    "name_en": "GROUPB",
+    "abbr": "GRB",
+    "tagline": "사람의 차이가 마케팅의 차이를 만듭니다.",
+    "tagline_en": "Different people. Different marketing."
+  },
+  "tokens": {
+    "colors": {
+      "brand_500": "#f59e0b",
+      "service": {
+        "viral": "#f59e0b",
+        "mobile": "#10b981",
+        "search": "#ef4444",
+        "offline": "#3b82f6",
+        "online": "#f97316",
+        "press": "#14b8a6",
+        "video": "#8b5cf6"
+      },
+      "team": {
+        "marketing": "#f59e0b",
+        "strategy": "#10b981",
+        "design": "#ec4899",
+        "content": "#3b82f6"
+      },
+      "case": {
+        "a": "#ef4444",
+        "b": "#f97316",
+        "c": "#0ea5e9"
+      },
+      "neutral": {
+        "surface": "#ffffff",
+        "surface_muted": "#f3f4f6",
+        "surface_dark": "#1f2937",
+        "text_strong": "#111827",
+        "text_default": "#1f2937",
+        "text_muted": "#6b7280",
+        "text_on_dark": "#f9fafb",
+        "border": "#e5e7eb"
+      }
+    },
+    "typography": {
+      "family_primary": "Noto Sans KR",
+      "family_fallback": "-apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', sans-serif",
+      "weights_used": [300, 400, 500, 700, 900],
+      "css_var_sans": "var(--font-sans)",
+      "css_var_display": "var(--font-display)"
+    },
+    "radius": {
+      "sm": "0.375rem",
+      "md": "0.75rem",
+      "lg": "1rem",
+      "xl": "1.5rem",
+      "card": "1.25rem"
+    },
+    "shadow": {
+      "card": "0 4px 24px -8px rgba(15, 23, 42, 0.12)",
+      "lift": "0 12px 32px -12px rgba(15, 23, 42, 0.18)"
+    }
+  },
+  "usage_examples": {
+    "tailwind_class_examples": [
+      "bg-brand-500 text-white",
+      "text-service-viral",
+      "border-team-design",
+      "bg-case-c/10 text-case-c",
+      "text-text-muted bg-surface-muted"
+    ]
+  },
+  "logo_source": "/images/slides/slide01_* (수동 추출 필요 — 슬라이드 1 표지 텍스트)",
+  "voice_and_tone": {
+    "voice": "전문적·신뢰감·명료",
+    "tone": "성과 중심, 정량 지표(ROAS·전환수·CPA), 한국어 격식체(\"~합니다\")"
+  }
+}

@@ -1,0 +1,131 @@
+{
+  "approach": "single-page-storytelling",
+  "rationale": "회사소개서 17 슬라이드의 명확한 스토리 흐름(문제 제기 → 가치 제안 → 서비스 → 성과 → 팀 → 신뢰 → CTA)을 그대로 살리는 1페이지 스크롤형 구조. B2B 마케팅 에이전시는 고객이 한 화면에서 핵심 정보를 빠르게 파악하는 것이 전환에 유리. 콘텐츠 분량이 17 슬라이드 수준으로 적정하여 단일 페이지에 부담 없이 담을 수 있음. 추후 /services, /works 등 깊이있는 라우트는 필요 시 추가 가능.",
+  "routes": [
+    {
+      "path": "/",
+      "name": "Home",
+      "sections": [
+        {
+          "id": "hero",
+          "component": "Hero",
+          "source": "content.intro + content.company.tagline",
+          "purpose": "강력한 첫인상 + 핵심 메시지 + CTA",
+          "anchor": "top"
+        },
+        {
+          "id": "why-us",
+          "component": "WhyUs",
+          "source": "content.value_propositions",
+          "purpose": "그룹비 3가지 강점 (전문성/퍼포먼스/차별성)",
+          "anchor": "why"
+        },
+        {
+          "id": "services",
+          "component": "Services",
+          "source": "content.services",
+          "purpose": "7대 마케팅 서비스 그리드",
+          "anchor": "services"
+        },
+        {
+          "id": "cases",
+          "component": "Cases",
+          "source": "content.achievements",
+          "purpose": "A/B/C 뷰티업체 Before/After 성과 카드",
+          "anchor": "cases"
+        },
+        {
+          "id": "team",
+          "component": "Team",
+          "source": "content.team",
+          "purpose": "4팀 구성 비율 시각화",
+          "anchor": "team"
+        },
+        {
+          "id": "partners",
+          "component": "Partners",
+          "source": "content.partners",
+          "purpose": "78개 파트너/클라이언트 로고 갤러리 (카테고리 탭)",
+          "anchor": "partners"
+        },
+        {
+          "id": "contact",
+          "component": "Contact",
+          "source": "content.contact",
+          "purpose": "최종 CTA — 전화/이메일/문의",
+          "anchor": "contact"
+        }
+      ],
+      "metadata": {
+        "title_override": null,
+        "description_override": null
+      }
+    }
+  ],
+  "global_layout": {
+    "header": {
+      "component": "SiteHeader",
+      "type": "sticky",
+      "items": [
+        {"label": "강점", "anchor": "#why"},
+        {"label": "서비스", "anchor": "#services"},
+        {"label": "성과", "anchor": "#cases"},
+        {"label": "팀", "anchor": "#team"},
+        {"label": "파트너", "anchor": "#partners"},
+        {"label": "문의", "anchor": "#contact", "variant": "cta"}
+      ],
+      "logo": "그룹비"
+    },
+    "footer": {
+      "component": "SiteFooter",
+      "groups": [
+        {
+          "title": "그룹비",
+          "items": ["사람의 차이가 마케팅의 차이를 만듭니다."]
+        },
+        {
+          "title": "Contact",
+          "items": ["010-5385-6564", "rmfnqql.office@grb-mkt.com", "grb-mkt.com"]
+        }
+      ]
+    }
+  },
+  "component_tree": {
+    "src/app/page.tsx": ["Hero", "WhyUs", "Services", "Cases", "Team", "Partners", "Contact"],
+    "src/app/layout.tsx": ["SiteHeader", "{children}", "SiteFooter"],
+    "src/components/layout/": ["SiteHeader.tsx", "SiteFooter.tsx", "Container.tsx", "SectionHeader.tsx"],
+    "src/components/sections/": [
+      "Hero.tsx",
+      "WhyUs.tsx",
+      "Services.tsx",
+      "Cases.tsx",
+      "Team.tsx",
+      "Partners.tsx",
+      "Contact.tsx"
+    ],
+    "src/components/ui/": ["Button.tsx", "Card.tsx", "Badge.tsx", "Stat.tsx"]
+  },
+  "future_routes_optional": [
+    {"path": "/services/[slug]", "note": "각 서비스 상세 페이지 (필요 시)"},
+    {"path": "/works", "note": "더 많은 성과 사례 모음 (필요 시)"},
+    {"path": "/contact", "note": "문의 폼 전용 페이지 (필요 시)"}
+  ],
+  "rendering_strategy": {
+    "mode": "Static (SSG)",
+    "reason": "콘텐츠가 정적이고 빌드 타임에 결정되므로 전체 페이지를 정적 생성. Next.js 16 기본 동작.",
+    "revalidation": "수동 재배포 (콘텐츠 변경 시 vercel deploy)"
+  },
+  "accessibility": {
+    "lang": "ko",
+    "semantic_landmarks": ["header", "main", "section[aria-labelledby]", "footer"],
+    "skip_link": "본문 바로가기",
+    "color_contrast": "WCAG AA 이상 (브랜드 컬러 톤 검증 필요)",
+    "keyboard_nav": "헤더 네비게이션 + 모든 CTA 키보드 접근 가능"
+  },
+  "seo": {
+    "sitemap": "/sitemap.xml (Next.js 자동 생성 활용)",
+    "robots": "/robots.txt",
+    "og_image": "/og.png (Step 4에서 Figma로 생성)",
+    "structured_data": "JSON-LD Organization + LocalBusiness 스키마 추가 예정"
+  }
+}

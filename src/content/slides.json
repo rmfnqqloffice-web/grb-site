@@ -1,0 +1,448 @@
+{
+  "source_file": "/Volumes/Ext_1TB/a.pptx",
+  "total_slides_in_file": 17,
+  "excluded_slides": [
+    9,
+    10,
+    11
+  ],
+  "included_slides_count": 14,
+  "slide_size_px": {
+    "width": 1280,
+    "height": 720
+  },
+  "brand_colors": [],
+  "fonts": [
+    "AppleSDGothicNeoR00",
+    "AppleSDGothicNeoB00"
+  ],
+  "color_usage": {},
+  "font_usage": {
+    "AppleSDGothicNeoR00": 18,
+    "AppleSDGothicNeoB00": 4
+  },
+  "slides": [
+    {
+      "slide_number": 1,
+      "shapes": [
+        {
+          "shape_idx": 0,
+          "type": "TEXT_BOX (17)",
+          "name": "TextBox 7",
+          "left": 93,
+          "top": 384,
+          "width": 414,
+          "height": 48,
+          "paragraphs": [
+            {
+              "alignment": null,
+              "runs": [
+                {
+                  "text": "그룹비",
+                  "font": "AppleSDGothicNeoR00",
+                  "size_pt": 24.0,
+                  "bold": null,
+                  "color": null
+                },
+                {
+                  "text": " ",
+                  "font": "AppleSDGothicNeoR00",
+                  "size_pt": 24.0,
+                  "bold": null,
+                  "color": null
+                },
+                {
+                  "text": "& 000 ",
+                  "font": "AppleSDGothicNeoR00",
+                  "size_pt": 24.0,
+                  "bold": null,
+                  "color": null
+                },
+                {
+                  "text": "검색광고 제안서",
+                  "font": "AppleSDGothicNeoR00",
+                  "size_pt": 24.0,
+                  "bold": null,
+                  "color": null
+                }
+              ]
+            }
+          ],
+          "plain_text": "그룹비 & 000 검색광고 제안서"
+        }
+      ]
+    },
+    {
+      "slide_number": 2,
+      "shapes": [
+        {
+          "shape_idx": 0,
+          "type": "PICTURE (13)",
+          "name": "그림 5",
+          "left": 0,
+          "top": 0,
+          "width": 1280,
+          "height": 720,
+          "image_path": "/images/slides/slide02_00_19351ad3.jpg"
+        }
+      ]
+    },
+    {
+      "slide_number": 3,
+      "shapes": [
+        {
+          "shape_idx": 0,
+          "type": "PICTURE (13)",
+          "name": "그림 2",
+          "left": 0,
+          "top": 0,
+          "width": 1280,
+          "height": 720,
+          "image_path": "/images/slides/slide03_00_af0ddd83.png"
+        }
+      ]
+    },
+    {
+      "slide_number": 4,
+      "shapes": [
+        {
+          "shape_idx": 0,
+          "type": "PICTURE (13)",
+          "name": "그림 3",
+          "left": 0,
+          "top": 0,
+          "width": 1280,
+          "height": 720,
+          "image_path": "/images/slides/slide04_00_35072b9c.png"
+        }
+      ]
+    },
+    {
+      "slide_number": 5,
+      "shapes": [
+        {
+          "shape_idx": 0,
+          "type": "PICTURE (13)",
+          "name": "그림 3",
+          "left": 0,
+          "top": 0,
+          "width": 1280,
+          "height": 720,
+          "image_path": "/images/slides/slide05_00_8a93c691.png"
+        }
+      ]
+    },
+    {
+      "slide_number": 6,
+      "shapes": [
+        {
+          "shape_idx": 0,
+          "type": "PICTURE (13)",
+          "name": "그래픽 2",
+          "left": 0,
+          "top": 0,
+          "width": 1280,
+          "height": 720,
+          "image_path": "/images/slides/slide06_00_997da86f.png"
+        }
+      ]
+    },
+    {
+      "slide_number": 7,
+      "shapes": [
+        {
+          "shape_idx": 0,
+          "type": "PICTURE (13)",
+          "name": "그래픽 2",
+          "left": 0,
+          "top": 0,
+          "width": 1280,
+          "height": 720,
+          "image_path": "/images/slides/slide07_00_beb65397.png"
+        }
+      ]
+    },
+    {
+      "slide_number": 8,
+      "shapes": [
+        {
+          "shape_idx": 0,
+          "type": "PICTURE (13)",
+          "name": "그래픽 2",
+          "left": 0,
+          "top": 0,
+          "width": 1280,
+          "height": 720,
+          "image_path": "/images/slides/slide08_00_f1e807ef.png"
+        }
+      ]
+    },
+    {
+      "slide_number": 12,
+      "shapes": [
+        {
+          "shape_idx": 0,
+          "type": "PICTURE (13)",
+          "name": "그래픽 2",
+          "left": 0,
+          "top": 0,
+          "width": 1280,
+          "height": 720,
+          "image_path": "/images/slides/slide12_00_55acb884.png"
+        }
+      ]
+    },
+    {
+      "slide_number": 13,
+      "shapes": [
+        {
+          "shape_idx": 0,
+          "type": "PICTURE (13)",
+          "name": "그래픽 2",
+          "left": 0,
+          "top": 0,
+          "width": 1280,
+          "height": 720,
+          "image_path": "/images/slides/slide13_00_6c15ebd4.png"
+        }
+      ]
+    },
+    {
+      "slide_number": 14,
+      "shapes": [
+        {
+          "shape_idx": 0,
+          "type": "PICTURE (13)",
+          "name": "그래픽 2",
+          "left": 0,
+          "top": 0,
+          "width": 1280,
+          "height": 720,
+          "image_path": "/images/slides/slide14_00_e8d1f70c.png"
+        }
+      ]
+    },
+    {
+      "slide_number": 15,
+      "shapes": [
+        {
+          "shape_idx": 0,
+          "type": "PICTURE (13)",
+          "name": "그래픽 2",
+          "left": 0,
+          "top": 0,
+          "width": 1280,
+          "height": 720,
+          "image_path": "/images/slides/slide15_00_ef77463f.png"
+        },
+        {
+          "shape_idx": 1,
+          "type": "AUTO_SHAPE (1)",
+          "name": "직사각형 3",
+          "left": 95,
+          "top": 507,
+          "width": 186,
+          "height": 89
+        },
+        {
+          "shape_idx": 2,
+          "type": "AUTO_SHAPE (1)",
+          "name": "직사각형 4",
+          "left": 93,
+          "top": 502,
+          "width": 208,
+          "height": 111
+        },
+        {
+          "shape_idx": 3,
+          "type": "PICTURE (13)",
+          "name": "Picture 2",
+          "left": 130,
+          "top": 530,
+          "width": 135,
+          "height": 55,
+          "image_path": "/images/slides/slide15_03_9db5c58d.png"
+        }
+      ]
+    },
+    {
+      "slide_number": 16,
+      "shapes": [
+        {
+          "shape_idx": 0,
+          "type": "PICTURE (13)",
+          "name": "그래픽 2",
+          "left": 0,
+          "top": 0,
+          "width": 1280,
+          "height": 720,
+          "image_path": "/images/slides/slide16_00_e92fdebf.png"
+        }
+      ]
+    },
+    {
+      "slide_number": 17,
+      "shapes": [
+        {
+          "shape_idx": 0,
+          "type": "PLACEHOLDER (14)",
+          "name": "제목 3",
+          "left": 178,
+          "top": 226,
+          "width": 960,
+          "height": 69,
+          "paragraphs": [
+            {
+              "alignment": null,
+              "runs": [
+                {
+                  "text": "당신의 ",
+                  "font": null,
+                  "size_pt": null,
+                  "bold": null,
+                  "color": null
+                },
+                {
+                  "text": "선택",
+                  "font": "AppleSDGothicNeoB00",
+                  "size_pt": null,
+                  "bold": null,
+                  "color": null
+                },
+                {
+                  "text": "이 기업의 ",
+                  "font": null,
+                  "size_pt": null,
+                  "bold": null,
+                  "color": null
+                },
+                {
+                  "text": "미래",
+                  "font": "AppleSDGothicNeoB00",
+                  "size_pt": null,
+                  "bold": null,
+                  "color": null
+                },
+                {
+                  "text": "가 됩니다",
+                  "font": null,
+                  "size_pt": null,
+                  "bold": null,
+                  "color": null
+                },
+                {
+                  "text": ".",
+                  "font": null,
+                  "size_pt": null,
+                  "bold": null,
+                  "color": null
+                }
+              ]
+            }
+          ],
+          "plain_text": "당신의 선택이 기업의 미래가 됩니다."
+        },
+        {
+          "shape_idx": 1,
+          "type": "TEXT_BOX (17)",
+          "name": "제목 3",
+          "left": 210,
+          "top": 378,
+          "width": 960,
+          "height": 155,
+          "paragraphs": [
+            {
+              "alignment": null,
+              "runs": [
+                {
+                  "text": "010-5385-6564",
+                  "font": null,
+                  "size_pt": 16.0,
+                  "bold": null,
+                  "color": null
+                }
+              ]
+            },
+            {
+              "alignment": null,
+              "runs": [
+                {
+                  "text": "-",
+                  "font": null,
+                  "size_pt": 16.0,
+                  "bold": null,
+                  "color": null
+                }
+              ]
+            },
+            {
+              "alignment": null,
+              "runs": [
+                {
+                  "text": "rmfnqql.office@grb-mkt.com",
+                  "font": null,
+                  "size_pt": 16.0,
+                  "bold": null,
+                  "color": null
+                }
+              ]
+            },
+            {
+              "alignment": null,
+              "runs": [
+                {
+                  "text": "grb-mkt.com",
+                  "font": null,
+                  "size_pt": 16.0,
+                  "bold": null,
+                  "color": null
+                }
+              ]
+            }
+          ],
+          "plain_text": "010-5385-6564\n-\nrmfnqql.office@grb-mkt.com\ngrb-mkt.com"
+        },
+        {
+          "shape_idx": 2,
+          "type": "PICTURE (13)",
+          "name": "그래픽 8",
+          "left": 184,
+          "top": 387,
+          "width": 22,
+          "height": 22,
+          "image_path": "/images/slides/slide17_02_57c69d73.png"
+        },
+        {
+          "shape_idx": 3,
+          "type": "PICTURE (13)",
+          "name": "그래픽 10",
+          "left": 184,
+          "top": 425,
+          "width": 22,
+          "height": 22,
+          "image_path": "/images/slides/slide17_03_61766216.png"
+        },
+        {
+          "shape_idx": 4,
+          "type": "PICTURE (13)",
+          "name": "그래픽 12",
+          "left": 184,
+          "top": 465,
+          "width": 22,
+          "height": 22,
+          "image_path": "/images/slides/slide17_04_24e567cd.png"
+        },
+        {
+          "shape_idx": 5,
+          "type": "PICTURE (13)",
+          "name": "그래픽 14",
+          "left": 184,
+          "top": 502,
+          "width": 22,
+          "height": 22,
+          "image_path": "/images/slides/slide17_05_e0eb24be.png"
+        }
+      ]
+    }
+  ]
+}
