@@ -2,12 +2,12 @@ import { Container } from "@/components/layout/Container";
 import { SectionHeader } from "@/components/layout/SectionHeader";
 import content from "@/content/content.json";
 
-// 4팀을 Primary / Secondary / Tertiary / Primary-strong 로 매핑
+// 4팀을 Primary / Secondary / Tertiary / Primary-strong 로 매핑 (전부 토큰 클래스)
 const TEAM_TOKENS = [
-  { color: "#3a8d63", text: "text-primary", bg: "bg-primary", soft: "bg-primary-soft" },
-  { color: "#1b2b44", text: "text-secondary", bg: "bg-secondary", soft: "bg-secondary/10" },
-  { color: "#70778b", text: "text-tertiary", bg: "bg-tertiary", soft: "bg-tertiary/15" },
-  { color: "#286042", text: "text-primary-strong", bg: "bg-primary-strong", soft: "bg-primary-soft" },
+  { text: "text-primary", bg: "bg-primary", soft: "bg-primary-soft" },
+  { text: "text-secondary", bg: "bg-secondary", soft: "bg-secondary/10" },
+  { text: "text-tertiary", bg: "bg-tertiary", soft: "bg-tertiary/15" },
+  { text: "text-primary-strong", bg: "bg-primary-strong", soft: "bg-primary-soft" },
 ] as const;
 
 export function Team() {
