@@ -1,6 +1,6 @@
-import { Badge } from "@/components/ui/badge";
 import { Container } from "@/components/layout/Container";
-import { SectionHeader } from "@/components/layout/SectionHeader";
+import { Reveal } from "@/components/fx/Reveal";
+import { CountUp } from "@/components/fx/CountUp";
 import content from "@/content/content.json";
 
 type Metric = {
@@ -10,11 +10,11 @@ type Metric = {
   values?: string[];
 };
 
-// A/B/C 사례를 Primary/Secondary/Tertiary로 매핑하여 4색 팔레트만으로 시각 구분
-const ACCENT_TOKENS = [
-  { bg: "bg-primary", text: "text-primary-strong", pill: "bg-primary-soft" },
-  { bg: "bg-secondary", text: "text-secondary", pill: "bg-secondary/10" },
-  { bg: "bg-tertiary", text: "text-tertiary-strong", pill: "bg-tertiary/15" },
+// 각 사례의 대표 성과 수치 — content.json metrics의 최종값을 대형 카운터로 강조
+const HIGHLIGHTS = [
+  { to: 1532, prefix: "", suffix: "건", caption: "판매 1,095건 → 1,532건 · 동일 예산" },
+  { to: 180, prefix: "", suffix: "%", caption: "ROAS 50% → 180% · 월 1억원 스케일업" },
+  { to: 58, prefix: "+", suffix: "%", caption: "전환율 상승 · 단가 1.9만 → 1.2만원" },
 ] as const;
 
 export function Cases() {
@@ -24,91 +24,77 @@ export function Cases() {
     <section
       id="cases"
       aria-labelledby="cases-heading"
-      className="bg-neutral py-24 sm:py-28"
+      className="bg-secondary py-20 text-text-on-dark sm:py-24"
     >
       <Container>
-        <SectionHeader
-          eyebrow="Achievement"
-          title={
-            <span id="cases-heading">
-              숫자로 증명하는 <span className="text-primary-strong">퍼포먼스</span>
-            </span>
-          }
-          description="동일 예산으로 더 많은 전환을, 같은 채널에서 더 낮은 단가를. 실제 광고주의 Before / After 결과입니다."
-          align="center"
-          className="mx-auto"
-        />
+        <Reveal>
+          <h2
+            id="cases-heading"
+            className="text-3xl font-black leading-[1.15] tracking-[-0.04em] text-white sm:text-4xl md:text-[44px]"
+          >
+            숫자가 증명합니다
+          </h2>
+          <p className="mt-4 max-w-[56ch] text-sm text-white/65 sm:text-base">
+            동일 예산으로 더 많은 전환을, 같은 채널에서 더 낮은 단가를 — 실제
+            광고주의 Before / After 결과입니다.
+          </p>
+        </Reveal>
 
-        <div className="mt-14 grid gap-6 lg:grid-cols-3">
+        <div className="mt-10 grid gap-4 lg:grid-cols-3">
           {items.map((c, idx) => {
-            const accent = ACCENT_TOKENS[idx % ACCENT_TOKENS.length];
+            const hl = HIGHLIGHTS[idx % HIGHLIGHTS.length];
             return (
-              <article
-                key={c.client}
-                className="relative overflow-hidden rounded-2xl border border-border/60 bg-white p-7 shadow-sm"
-              >
-                <span
-                  className={`absolute left-0 top-0 h-1 w-full ${accent.bg}`}
-                  aria-hidden
-                />
-                <div className="flex items-baseline justify-between gap-3">
-                  <h3 className="text-2xl font-bold text-text-strong">{c.client}</h3>
-                  <span
-                    className={`rounded-full px-3 py-1 text-xs font-semibold ${accent.pill} ${accent.text}`}
-                  >
-                    Case
-                  </span>
-                </div>
+              <Reveal key={c.client} delay={(idx % 3) * 90}>
+                <article className="h-full rounded-[20px] border border-white/12 bg-white/5 p-6 sm:p-7">
+                  <p className="text-xs font-extrabold uppercase tracking-[0.12em] text-primary-bright">
+                    {c.client}
+                  </p>
+                  <p className="mt-3 text-5xl font-black leading-none tracking-[-0.04em] text-white sm:text-[52px]">
+                    <CountUp to={hl.to} prefix={hl.prefix} suffix={hl.suffix} />
+                  </p>
+                  <p className="mt-2 text-xs text-white/55">{hl.caption}</p>
 
-                <div className="mt-4 flex flex-wrap gap-1.5">
-                  {(c.channels ?? c.channels_after ?? []).map((ch) => (
-                    <Badge
-                      key={ch}
-                      variant="secondary"
-                      className="bg-neutral text-text-default"
-                    >
-                      {ch}
-                    </Badge>
-                  ))}
-                </div>
+                  <p className="mt-4 text-[13px] leading-relaxed text-white/75">{c.summary}</p>
 
-                <p className="mt-5 text-sm leading-relaxed text-text-muted">
-                  {c.summary}
-                </p>
-
-                <div className="mt-6 space-y-3 rounded-xl bg-neutral p-4">
-                  {(c.metrics as Metric[]).map((m) => (
-                    <div
-                      key={m.label}
-                      className="flex items-center justify-between gap-4 text-sm"
-                    >
-                      <span className="font-medium text-text-default">
-                        {m.label}
+                  <div className="mt-4 flex flex-wrap gap-1.5">
+                    {(c.channels ?? c.channels_after ?? []).map((ch) => (
+                      <span
+                        key={ch}
+                        className="rounded-full border border-white/20 px-2.5 py-0.5 text-[11px] font-semibold text-white/70"
+                      >
+                        {ch}
                       </span>
-                      <div className="flex items-center gap-2 font-mono">
-                        {m.before && (
-                          <>
-                            <span className="text-tertiary line-through">
-                              {m.before}
+                    ))}
+                  </div>
+
+                  <div className="mt-5 space-y-2 border-t border-white/12 pt-4">
+                    {(c.metrics as Metric[]).map((m) => (
+                      <div
+                        key={m.label}
+                        className="flex items-center justify-between gap-4 text-xs"
+                      >
+                        <span className="font-medium text-white/60">{m.label}</span>
+                        <div className="flex items-center gap-2 font-mono">
+                          {m.before && (
+                            <>
+                              <span className="text-white/40 line-through">{m.before}</span>
+                              <span className="text-white/40">→</span>
+                            </>
+                          )}
+                          {m.after && (
+                            <span className="font-bold text-primary-bright">{m.after}</span>
+                          )}
+                          {m.values && (
+                            <span className="font-bold text-primary-bright">
+                              {m.values.join(" · ")}
                             </span>
-                            <span className="text-tertiary">→</span>
-                          </>
-                        )}
-                        {m.after && (
-                          <span className={`font-bold ${accent.text}`}>
-                            {m.after}
-                          </span>
-                        )}
-                        {m.values && (
-                          <span className={`font-bold ${accent.text}`}>
-                            {m.values.join(" · ")}
-                          </span>
-                        )}
+                          )}
+                        </div>
                       </div>
-                    </div>
-                  ))}
-                </div>
-              </article>
+                    ))}
+                  </div>
+                </article>
+              </Reveal>
             );
           })}
         </div>

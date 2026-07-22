@@ -1,46 +1,40 @@
 import { Container } from "@/components/layout/Container";
-import { SectionHeader } from "@/components/layout/SectionHeader";
+import { Reveal } from "@/components/fx/Reveal";
 import content from "@/content/content.json";
 
 export function Services() {
   const items = content.services.items;
   return (
-    <section id="services" aria-labelledby="services-heading" className="py-24 sm:py-28">
+    <section id="services" aria-labelledby="services-heading" className="bg-neutral py-20 sm:py-24">
       <Container>
-        <SectionHeader
-          eyebrow="Services"
-          title={
-            <span id="services-heading">
-              7대 마케팅으로<br className="hidden sm:block" /> 광고주의 성과를 만듭니다
-            </span>
-          }
-          description="검색·바이럴·모바일·온라인·오프라인·언론·영상 — 광고주에게 가장 적합한 채널 믹스를 제안합니다."
-          align="center"
-          className="mx-auto"
-        />
+        <Reveal>
+          <h2
+            id="services-heading"
+            className="text-3xl font-black leading-[1.15] tracking-[-0.04em] text-secondary sm:text-4xl md:text-[44px]"
+          >
+            광고주에게 필요한 것만,
+            <br />
+            정확하게 제안합니다
+          </h2>
+          <p className="mt-4 max-w-[56ch] text-sm text-text-muted sm:text-base">
+            검색·바이럴·모바일·온라인·오프라인·언론·영상 — 7대 마케팅 채널에서 가장
+            적합한 믹스를 설계합니다.
+          </p>
+        </Reveal>
 
-        <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {items.map((s) => (
-            <article
-              key={s.no}
-              className="group relative overflow-hidden rounded-2xl border border-border/60 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:border-primary/40 hover:shadow-md"
-            >
-              <span
-                className="absolute -bottom-3 -right-1 text-8xl font-extrabold leading-none text-primary opacity-[0.08] transition group-hover:opacity-15"
-                aria-hidden
-              >
-                {s.no}
-              </span>
-              <div className="relative">
-                <span className="inline-block h-1.5 w-10 rounded-full bg-primary" aria-hidden />
-                <h3 className="mt-4 text-lg font-bold text-text-strong">
+        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {items.map((s, idx) => (
+            <Reveal key={s.no} delay={(idx % 3) * 80}>
+              <article className="h-full rounded-[22px] border-2 border-transparent bg-white p-6 transition duration-200 hover:-translate-y-1 hover:-rotate-[0.5deg] hover:border-primary sm:p-7">
+                <span className="inline-block rounded-full bg-secondary px-3 py-1 text-[11px] font-bold text-white">
+                  {s.name.replace("마케팅", "")}
+                </span>
+                <h3 className="mt-4 text-lg font-extrabold tracking-[-0.02em] text-secondary">
                   {s.name}
                 </h3>
-                <p className="mt-3 text-sm leading-relaxed text-text-muted">
-                  {s.body}
-                </p>
-              </div>
-            </article>
+                <p className="mt-2 text-[13px] leading-relaxed text-text-muted">{s.body}</p>
+              </article>
+            </Reveal>
           ))}
         </div>
       </Container>
