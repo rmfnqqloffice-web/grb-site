@@ -1,4 +1,5 @@
 import { Container } from "./Container";
+import { LogoMark } from "./Logo";
 import content from "@/content/content.json";
 
 export function SiteFooter() {
@@ -8,7 +9,7 @@ export function SiteFooter() {
       <Container className="grid gap-10 py-14 md:grid-cols-3">
         <div>
           <div className="flex items-center gap-2 text-lg font-extrabold">
-            <span className="inline-block h-7 w-7 rounded-md bg-primary" aria-hidden />
+            <LogoMark className="h-7 w-7 shrink-0 text-primary-bright" />
             {c.name_ko}
           </div>
           <p className="mt-3 text-sm leading-relaxed text-white/70">
