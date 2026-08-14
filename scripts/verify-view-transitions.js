@@ -2,12 +2,17 @@
  * View Transitions 회귀 테스트.
  *
  * 이 기능은 **조용히 죽는다** — 빌드도 타입체크도 통과하는데 전환만 안 일어난다.
- * 실제로 개발 중 두 번 그랬다:
+ * 실제로 개발 중 세 번 그랬다:
  *   1) base-ui Tabs 가 onValueChange 직후 transition 밖에서 setValue 를 불러
  *      긴급 렌더가 startTransition 을 앞질렀다 → startViewTransition 호출 0회
  *   2) key 가 같은 로고를 React 가 재사용해 share 가 아니라 update 트리거였는데
  *      default="none" 이 그걸 막았다 → 이름조차 안 붙음
- * 둘 다 화면상으로는 "그냥 좀 밋밋하네" 정도라 눈으로는 놓치기 쉽다.
+ *   3) 전체/개별 탭의 트리 모양이 갈라져(제목을 조건부 렌더) React 가 서브트리를
+ *      통째로 갈아끼우며 안쪽 ViewTransition 을 건너뛰었다 → 이름 0개
+ * 셋 다 화면상으로는 "그냥 좀 밋밋하네" 정도라 눈으로는 놓치기 쉽다.
+ *
+ * ★ 그래서 카테고리 제목이 "항상 DOM 에 있는지"도 검사한다. 제목을 조건부로 되돌리면
+ *   (3)이 재발해 로고 이동이 통째로 죽는다 — 제목과 전환은 한 몸이다.
  *
  * 실행:
  *   npm i -D playwright-core          # 최초 1회 (상시 의존성으로는 넣지 않았다)
@@ -114,6 +119,17 @@ const groupNames = (list) =>
   const tilesBefore = await page.locator("#partners [role='tabpanel'] .grid > *").count();
   check("전체 탭에 78개 타일", tilesBefore === 78, `${tilesBefore}개`);
 
+  // 카테고리 제목은 유지돼야 한다. 그리고 '조건부로 빼지 않는 것'이 전환의 전제다 —
+  // 제목을 조건부 렌더로 되돌리면 트리 모양이 갈라져 로고 이동이 통째로 죽는다.
+  const headAll = await page.$$eval("#partners h3", (els) =>
+    els.map((e) => ({ text: (e.textContent || "").trim(), sr: e.className.includes("sr-only") }))
+  );
+  check(
+    "전체 탭에 카테고리 제목이 보임",
+    headAll.length === 9 && headAll.every((h) => !h.sr),
+    `${headAll.length}개 · ${headAll.slice(0, 3).map((h) => h.text).join(" / ")}…`
+  );
+
   // '뷰티' 탭으로 전환 — '전체'에도 있는 로고라 이동(share)이 형성돼야 한다.
   await page.evaluate(() => ((window.__vt.calls = []), (window.__vt.groups = [])));
   await page.locator('#partners [role="tab"]', { hasText: "뷰티" }).first().click();
@@ -129,6 +145,16 @@ const groupNames = (list) =>
 
   const tilesAfter = await page.locator("#partners [role='tabpanel'] .grid > *").count();
   check("전환 후 타일 수가 바뀜", tilesAfter === 10, `${tilesBefore} → ${tilesAfter}개 (뷰티 10개)`);
+
+  // 개별 탭에서는 탭 라벨과 중복이라 시각적으로만 숨긴다. ★DOM 에서 빼면 안 된다.
+  const headOne = await page.$$eval("#partners h3", (els) =>
+    els.map((e) => ({ text: (e.textContent || "").trim(), sr: e.className.includes("sr-only") }))
+  );
+  check(
+    "개별 탭에서 제목은 DOM 유지 + 시각만 숨김(sr-only)",
+    headOne.length === 1 && headOne[0].sr,
+    headOne.map((h) => `${h.text}${h.sr ? "(sr-only)" : "(보임)"}`).join(", ") || "없음"
+  );
 
   // 활성 탭이 브랜드 그린으로 표시되는지 (base-ui 시절 data-[state=active] 가 안 먹던 자리)
   const activeBg = await page.evaluate(() => {

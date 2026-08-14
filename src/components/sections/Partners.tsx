@@ -40,7 +40,8 @@ export function Partners() {
   const [tab, setTab] = useState("전체");
   const listRef = useRef<HTMLDivElement>(null);
   const activeIndex = TABS.indexOf(tab);
-  const shown = tab === "전체" ? categories.flatMap((c) => c.logos) : logosOf(tab);
+  // 전체든 개별이든 '카테고리 블록의 배열'로 같은 모양을 유지한다.
+  const blocks = tab === "전체" ? categories : [{ title: tab, logos: logosOf(tab) }];
 
   function select(next: string) {
     if (next === tab) return;
@@ -123,31 +124,19 @@ export function Partners() {
             aria-labelledby={`partners-tab-${activeIndex}`}
             className="mt-10"
           >
-            {/* ★ 전체 탭과 개별 탭이 '같은 자리의 같은 그리드'여야 한다.
-                구조가 갈라지면(전체=카테고리 블록 9개 / 개별=블록 1개) React 가 서브트리를
-                통째로 갈아끼우면서 안쪽 ViewTransition 을 추적하지 못한다 —
-                실측에서 그 구조일 때 전환 중 view-transition-name 이 0개였다.
-                그래서 전체 탭도 카테고리 제목 없이 한 그리드에 펼친다. */}
-            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
-              {shown.map((logo) => (
-                // ★ key 가 같은 로고는 React 가 재사용한다. 언마운트/마운트가 아니므로
-                //   share 가 아니라 **update** 트리거다(자리만 옮기는 경우).
-                //   update 를 빼면 default="none" 에 걸려 이름조차 붙지 않아 전환이 죽는다.
-                //   실측: update 추가 전 group 1개(root뿐) → 추가 후 11개(로고 10 + root).
-                //   share 는 짝으로 잡히는 경우, enter/exit 는 이번 탭에만 있거나 빠지는 로고용.
-                <ViewTransition
-                  key={logo}
-                  name={LOGO_VT_NAME.get(logo)}
-                  share="logo-move"
-                  update="logo-move"
-                  enter="logo-in"
-                  exit="logo-out"
-                  default="none"
-                >
-                  <div className="flex h-20 items-center justify-center rounded-xl border border-border/60 bg-white px-3 text-center text-sm font-semibold text-text-default transition hover:border-primary/40 hover:shadow-sm">
-                    <span className="line-clamp-2 leading-tight">{logo}</span>
-                  </div>
-                </ViewTransition>
+            {/* ★ 전체 탭과 개별 탭의 DOM 모양이 같아야 한다. 한쪽만 래퍼가 있거나 제목이
+                조건부로 빠지면 React 가 서브트리를 통째로 갈아끼우며 안쪽 ViewTransition 을
+                추적하지 못한다(실측: 그 구조일 때 전환 중 view-transition-name 이 0개).
+                그래서 양쪽 다 '카테고리 블록의 배열'로 두고, key 도 탭에 의존시키지 않아
+                같은 카테고리는 재사용되게 한다. */}
+            <div className="space-y-10">
+              {blocks.map((cat) => (
+                <CategoryBlock
+                  key={cat.title}
+                  title={cat.title}
+                  logos={cat.logos}
+                  hideTitle={tab !== "전체"}
+                />
               ))}
             </div>
           </div>
@@ -157,3 +146,53 @@ export function Partners() {
   );
 }
 
+function CategoryBlock({
+  title,
+  logos,
+  hideTitle = false,
+}: {
+  title: string;
+  logos: string[];
+  hideTitle?: boolean;
+}) {
+  return (
+    <div>
+      {/* ★ 제목은 조건부로 빼지 않고 항상 렌더한다. 조건부로 DOM 이 사라지면 전체/개별 탭의
+          트리 모양이 갈라져 안쪽 ViewTransition 이 추적되지 않는다(실측 name 0개).
+          개별 탭에서는 탭 라벨과 중복이므로 시각적으로만 숨긴다 — sr-only 는 레이아웃을
+          차지하지 않고 스크린리더에는 그대로 읽힌다. */}
+      <h3
+        className={cn(
+          "mb-4 text-base font-semibold text-text-strong",
+          hideTitle && "sr-only",
+        )}
+      >
+        {title}
+        <span className="ml-2 text-xs font-medium text-text-muted">
+          ({logos.length})
+        </span>
+      </h3>
+      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+        {logos.map((logo) => (
+          // ★ key 가 같은 로고는 React 가 재사용한다. 언마운트/마운트가 아니므로
+          //   share 가 아니라 **update** 트리거다(자리만 옮기는 경우).
+          //   update 를 빼면 default="none" 에 걸려 이름조차 붙지 않아 전환이 죽는다.
+          //   share 는 짝으로 잡히는 경우, enter/exit 는 이번 탭에만 있거나 빠지는 로고용.
+          <ViewTransition
+            key={logo}
+            name={LOGO_VT_NAME.get(logo)}
+            share="logo-move"
+            update="logo-move"
+            enter="logo-in"
+            exit="logo-out"
+            default="none"
+          >
+            <div className="flex h-20 items-center justify-center rounded-xl border border-border/60 bg-white px-3 text-center text-sm font-semibold text-text-default transition hover:border-primary/40 hover:shadow-sm">
+              <span className="line-clamp-2 leading-tight">{logo}</span>
+            </div>
+          </ViewTransition>
+        ))}
+      </div>
+    </div>
+  );
+}
