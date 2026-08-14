@@ -1,4 +1,5 @@
 import { ImageResponse } from "next/og";
+import { logoDataUri } from "@/lib/logo";
 
 export const alt = "그룹비 | 사람의 차이가 마케팅의 차이를 만듭니다";
 export const size = {
@@ -26,21 +27,8 @@ export default function OpenGraphImage() {
       >
         {/* 상단 브랜드 마크 */}
         <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
-          <div
-            style={{
-              width: 56,
-              height: 56,
-              borderRadius: 12,
-              background: "#3a8d63",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              fontSize: 36,
-              fontWeight: 900,
-            }}
-          >
-            G
-          </div>
+          {/* 로고 자체가 사각 프레임을 가지고 있어 별도 배경 도형을 두지 않는다 */}
+          <img src={logoDataUri("#5cb98a")} width={56} height={56} alt="" />
           <div
             style={{
               display: "flex",

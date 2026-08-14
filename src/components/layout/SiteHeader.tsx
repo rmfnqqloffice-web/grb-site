@@ -6,6 +6,7 @@ import { Menu, X } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Container } from "./Container";
+import { LogoMark } from "./Logo";
 import { cn } from "@/lib/utils";
 
 const NAV = [
@@ -26,7 +27,7 @@ export function SiteHeader() {
           href="#top"
           className="flex items-center gap-2 text-lg font-extrabold tracking-tight text-text-strong"
         >
-          <span className="inline-block h-7 w-7 rounded-md bg-primary" aria-hidden />
+          <LogoMark className="h-7 w-7 shrink-0 text-primary" />
           그룹비
         </Link>
 
@@ -69,7 +70,10 @@ export function SiteHeader() {
             <SheetTitle className="sr-only">사이트 메뉴</SheetTitle>
             <div className="flex h-full flex-col">
               <div className="flex items-center justify-between px-1 pt-2">
-                <span className="text-lg font-extrabold text-text-strong">그룹비</span>
+                <span className="flex items-center gap-2 text-lg font-extrabold text-text-strong">
+                  <LogoMark className="h-6 w-6 shrink-0 text-primary" />
+                  그룹비
+                </span>
                 <Button
                   variant="ghost"
                   size="icon"
