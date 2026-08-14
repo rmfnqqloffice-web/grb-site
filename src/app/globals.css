@@ -159,8 +159,69 @@ body {
   }
 }
 
+/* === View Transitions ===
+   React <ViewTransition> 이 만드는 의사요소용 애니메이션.
+   ::view-transition-* 는 문서 최상위 레이어라 섹션 CSS의 영향을 받지 않는다. */
+
+/* root 는 페이지 전체 스냅샷이다. 타일 이동보다 짧게 끝내 뒤에서 조용히 교체되게 하고,
+   이름이 붙은 그룹(로고 타일)이 그 위에 쌓여 선명하게 움직이도록 둔다. */
+::view-transition-group(root) {
+  animation-duration: 260ms;
+}
+
+/* 카테고리를 바꿔도 살아남는 로고 — 옛 자리에서 새 자리로 이동한다. */
+::view-transition-group(.logo-move) {
+  animation-duration: 420ms;
+  animation-timing-function: cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+/* 이번 카테고리에서 빠지는 타일 / 새로 들어오는 타일 */
+::view-transition-old(.logo-out) {
+  animation: 150ms ease-in both vt-tile-out;
+}
+::view-transition-new(.logo-in) {
+  animation: 220ms ease-out 110ms both vt-tile-in;
+}
+@keyframes vt-tile-out {
+  to { opacity: 0; scale: 0.94; }
+}
+@keyframes vt-tile-in {
+  from { opacity: 0; scale: 0.94; }
+}
+
+/* 사례 카드 → 상세: 광고주명과 대표 수치가 제자리에서 이어진다.
+   텍스트는 래스터 스냅샷을 확대하면 잔상이 남으므로, 옛 스냅샷을 숨기고
+   새 텍스트를 원해상도로 그린 채 위치만 옮긴다. */
+::view-transition-group(.case-morph) {
+  animation-duration: 420ms;
+  animation-timing-function: cubic-bezier(0.32, 0.72, 0, 1);
+}
+::view-transition-old(.case-morph) {
+  display: none;
+}
+::view-transition-new(.case-morph) {
+  animation: none;
+  object-fit: none;
+  object-position: left top;
+}
+
+/* 상세 본문·돌아가기 버튼 — 수치가 이동하는 동안 뒤늦게 따라 들어온다. */
+::view-transition-old(.case-fade) {
+  animation: 150ms ease-in both vt-tile-out;
+}
+::view-transition-new(.case-fade) {
+  animation: 240ms ease-out 130ms both vt-tile-in;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .animate-marquee {
     animation: none;
+  }
+  /* 전환은 유지하되 즉시 끝낸다 — 브라우저 기본(즉시 교체)과 같아진다. */
+  ::view-transition-old(*),
+  ::view-transition-new(*),
+  ::view-transition-group(*) {
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
   }
 }
