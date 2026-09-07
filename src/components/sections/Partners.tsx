@@ -12,6 +12,10 @@ const totalLogos = categories.reduce((sum, c) => sum + c.logos.length, 0);
 const TITLES = Array.from(new Set(categories.map((c) => c.title)));
 const TABS = ["전체", ...TITLES];
 
+// 처음 보이는 탭. '전체'는 78개가 한꺼번에 쏟아져 스크롤이 길어지므로 대표 카테고리를
+// 먼저 보여준다. content.json 에서 카테고리명이 바뀌어도 깨지지 않게 폴백을 둔다.
+const DEFAULT_TAB = TABS.includes("파트너") ? "파트너" : TABS[0];
+
 // view-transition-name 은 CSS 식별자라 로고명을 그대로 쓸 수 없다
 // (L'OCCITANE·B*Hands·Dr.Jart+·KBS라디오 kong 처럼 따옴표·별표·플러스·공백이 섞여 있다).
 // content.json 등장 순서로 안정적인 이름을 만든다 — 정적 JSON이라 서버·클라이언트 결과가 같다.
@@ -38,7 +42,7 @@ function logosOf(title: string) {
  * 대신 WAI-ARIA 탭 패턴(roving tabIndex·화살표·Home/End)을 직접 구현한다.
  */
 export function Partners() {
-  const [tab, setTab] = useState("전체");
+  const [tab, setTab] = useState(DEFAULT_TAB);
   const listRef = useRef<HTMLDivElement>(null);
   const activeIndex = TABS.indexOf(tab);
   // 전체든 개별이든 '카테고리 블록의 배열'로 같은 모양을 유지한다.
