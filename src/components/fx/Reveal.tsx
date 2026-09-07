@@ -40,7 +40,9 @@ export function Reveal({
       ref={ref}
       style={delay ? { transitionDelay: `${delay}ms` } : undefined}
       className={cn(
-        "ease-out motion-safe:transition-all motion-safe:duration-700",
+        // 실제로 변하는 건 transform·opacity 둘뿐이다. transition-all 은 나머지
+        // 속성까지 감시해 리빌이 많은 페이지에서 불필요한 비용이 된다.
+        "ease-out motion-safe:transition-[transform,opacity] motion-safe:duration-700",
         !inView && "motion-safe:translate-y-6 motion-safe:opacity-0",
         className,
       )}
