@@ -129,37 +129,91 @@
       {
         "slide": 6,
         "client": "A 뷰티업체",
-        "channels": ["검색광고", "쇼핑검색광고"],
+        "channels": [
+          "검색광고",
+          "쇼핑검색광고"
+        ],
         "summary": "이전 대행사와 동일한 예산으로 검색광고 집행 결과, 보다 정밀한 타겟팅과 효과적인 광고 운영으로 약 200건의 판매를 더 확보하여 전환 단가를 2만원 낮추었습니다.",
         "color": "#EF4444",
         "metrics": [
-          {"label": "집행비용", "before": "2천만원", "after": "2천만원"},
-          {"label": "판매건수", "before": "1,095건", "after": "1,532건"},
-          {"label": "전환단가", "before": "1.8만원", "after": "1.3만원"}
+          {
+            "label": "집행비용",
+            "before": "2천만원",
+            "after": "2천만원"
+          },
+          {
+            "label": "판매건수",
+            "before": "1,095건",
+            "after": "1,532건"
+          },
+          {
+            "label": "전환단가",
+            "before": "1.8만원",
+            "after": "1.3만원"
+          }
         ]
       },
       {
         "slide": 7,
         "client": "B 뷰티업체",
-        "channels_before": ["페이스북", "바이럴", "검색"],
-        "channels_after": ["GDN", "페이스북", "모비온", "검색", "바이럴"],
+        "channels_before": [
+          "페이스북",
+          "바이럴",
+          "검색"
+        ],
+        "channels_after": [
+          "GDN",
+          "페이스북",
+          "모비온",
+          "검색",
+          "바이럴"
+        ],
         "summary": "신규 브랜드로 기존 대행사에서 효율 문제로 예산 증액이 안되었으나 기존 2개월의 데이터 수치 분석 및 매체 플래닝으로 2천만원 / ROAS 50%에서 자사로 이관 후 활용매체를 늘리며 결과적으로 1억 / ROAS 180%로 상승하였습니다.",
         "color": "#F97316",
         "metrics": [
-          {"label": "기존 대행사", "values": ["1천만원", "2천만원"]},
-          {"label": "그룹비", "values": ["4천만원", "6천만원", "8천만원", "1억원"]}
+          {
+            "label": "기존 대행사",
+            "values": [
+              "1천만원",
+              "2천만원"
+            ]
+          },
+          {
+            "label": "그룹비",
+            "values": [
+              "4천만원",
+              "6천만원",
+              "8천만원",
+              "1억원"
+            ]
+          }
         ]
       },
       {
         "slide": 8,
         "client": "C 뷰티업체",
-        "channels": ["GDN", "페이스북"],
+        "channels": [
+          "GDN",
+          "페이스북"
+        ],
         "summary": "이전 대행사와 동일한 예산으로 동일한 매체에 광고 집행 하였으나, 보다 정교한 타겟팅 및 광고 관리를 통해 이전 대비 전환율이 58% 증가한 1,666건을, 전환 단가는 7천원 낮은 1만 2천원 기록했습니다.",
         "color": "#0EA5E9",
         "metrics": [
-          {"label": "집행비용", "before": "2천만원", "after": "2천만원"},
-          {"label": "전환", "before": "1,052건", "after": "1,666건"},
-          {"label": "전환단가", "before": "1만9천원", "after": "1만2천원"}
+          {
+            "label": "집행비용",
+            "before": "2천만원",
+            "after": "2천만원"
+          },
+          {
+            "label": "전환",
+            "before": "1,052건",
+            "after": "1,666건"
+          },
+          {
+            "label": "전환단가",
+            "before": "1만9천원",
+            "after": "1만2천원"
+          }
         ]
       }
     ]
@@ -171,65 +225,132 @@
         "slide": 12,
         "title": "파트너",
         "logos": [
-          "NAVER", "Daum", "NATE", "kakao", "Google",
-          "GOREALRA", "GORILLA", "KBS라디오 kong", "CBS RADIO", "CGV",
-          "LOTTE CINEMA", "MEGABOX", "ACE Counter", "CPCGUARD", "Logger",
-          "LOG", "ADMONSTER", "Colored Stone"
+          "NAVER",
+          "Daum",
+          "NATE",
+          "kakao",
+          "Google",
+          "GOREALRA",
+          "GORILLA",
+          "KBS라디오 kong",
+          "CBS RADIO",
+          "CGV",
+          "LOTTE CINEMA",
+          "MEGABOX",
+          "ACE Counter",
+          "CPCGUARD",
+          "Logger",
+          "LOG",
+          "ADMONSTER",
+          "Colored Stone"
         ]
       },
       {
         "slide": 13,
         "title": "관공서",
         "logos": [
-          "국세청", "중소기업청", "식품의약품안전처", "한국농어촌공사", "LH",
-          "한국어촌어항협회", "에너지관리공단", "한국남부발전", "KNOC 한국석유공사", "수협"
+          "국세청",
+          "중소기업청",
+          "식품의약품안전처",
+          "한국농어촌공사",
+          "LH",
+          "한국어촌어항협회",
+          "에너지관리공단",
+          "한국남부발전",
+          "KNOC 한국석유공사",
+          "수협"
         ]
       },
       {
         "slide": 13,
         "title": "교육",
-        "logos": ["중앙대학교", "동국대학교", "영남대학교", "부산디지털대학교", "SKYEDU"]
+        "logos": [
+          "중앙대학교",
+          "동국대학교",
+          "영남대학교",
+          "부산디지털대학교",
+          "SKYEDU"
+        ]
       },
       {
         "slide": 14,
         "title": "병원",
         "logos": [
-          "페이스라인 성형외과", "BGN 밝은눈안과", "하늘안과의원",
-          "하지 정맥류 네트워크", "헬레나의원", "끌림365"
+          "페이스라인 성형외과",
+          "BGN 밝은눈안과",
+          "하늘안과의원",
+          "하지 정맥류 네트워크",
+          "헬레나의원",
+          "끌림365"
         ]
       },
       {
         "slide": 14,
         "title": "식품",
-        "logos": ["롯데제과", "롯데리아", "동서식품", "SAMYANG", "천호식품"]
+        "logos": [
+          "롯데제과",
+          "롯데리아",
+          "동서식품",
+          "SAMYANG",
+          "천호식품"
+        ]
       },
       {
         "slide": 15,
         "title": "뷰티",
         "logos": [
-          "L'OCCITANE", "Dr.Jart+", "isoi", "NATURE REPUBLIC", "THE FACE SHOP",
-          "LG생활건강", "MEDIHEAL", "HOLIKA HOLIKA", "KATE TOKYO", "BRTC"
+          "L'OCCITANE",
+          "Dr.Jart+",
+          "isoi",
+          "NATURE REPUBLIC",
+          "THE FACE SHOP",
+          "LG생활건강",
+          "MEDIHEAL",
+          "HOLIKA HOLIKA",
+          "KATE TOKYO",
+          "BRTC"
         ]
       },
       {
         "slide": 15,
         "title": "패션",
-        "logos": ["UNIQLO", "K2", "GIORDANO", "STCO", "MCM"]
+        "logos": [
+          "ANEW",
+          "K2",
+          "GIORDANO",
+          "STCO",
+          "MCM"
+        ]
       },
       {
         "slide": 16,
         "title": "금융",
         "logos": [
-          "신한은행", "KB국민카드", "동부화재", "SC제일은행", "KEB하나은행",
-          "pepper", "Cigna 라이나생명", "ING", "MG손해보험", "아주캐피탈"
+          "신한은행",
+          "KB국민카드",
+          "동부화재",
+          "SC제일은행",
+          "KEB하나은행",
+          "pepper",
+          "Cigna 라이나생명",
+          "ING",
+          "MG손해보험",
+          "아주캐피탈"
         ]
       },
       {
         "slide": 16,
         "title": "기타",
         "logos": [
-          "월트디즈니", "GS리테일", "메이플스토리", "JEJU air", "B*Hands",
-          "대명리조트", "Ford", "듀오", "동아제약"
+          "월트디즈니",
+          "GS리테일",
+          "메이플스토리",
+          "JEJU air",
+          "B*Hands",
+          "대명리조트",
+          "Ford",
+          "듀오",
+          "동아제약"
         ]
       }
     ],
@@ -251,8 +372,21 @@
     "website": "grb-mkt.com"
   },
   "brand_colors_observed": {
-    "service_palette": ["#F59E0B", "#10B981", "#EF4444", "#3B82F6", "#F97316", "#14B8A6", "#8B5CF6"],
-    "team_palette": ["#F59E0B", "#10B981", "#EC4899", "#3B82F6"],
+    "service_palette": [
+      "#F59E0B",
+      "#10B981",
+      "#EF4444",
+      "#3B82F6",
+      "#F97316",
+      "#14B8A6",
+      "#8B5CF6"
+    ],
+    "team_palette": [
+      "#F59E0B",
+      "#10B981",
+      "#EC4899",
+      "#3B82F6"
+    ],
     "case_a_accent": "#EF4444",
     "case_b_accent": "#F97316",
     "case_c_accent": "#0EA5E9",
@@ -267,7 +401,11 @@
   "meta": {
     "source": "/Volumes/Ext_1TB/a.pptx",
     "extracted_at": "2026-05-16",
-    "excluded_slides": [9, 10, 11],
+    "excluded_slides": [
+      9,
+      10,
+      11
+    ],
     "extraction_method": "python-pptx + visual analysis (Read tool on slide images)"
   }
 }

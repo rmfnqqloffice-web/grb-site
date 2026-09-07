@@ -5,6 +5,7 @@ import { Container } from "@/components/layout/Container";
 import { SectionHeader } from "@/components/layout/SectionHeader";
 import { cn } from "@/lib/utils";
 import content from "@/content/content.json";
+import { PARTNER_LOGO } from "@/content/partner-logos";
 
 const categories = content.partners.categories;
 const totalLogos = categories.reduce((sum, c) => sum + c.logos.length, 0);
@@ -187,8 +188,22 @@ function CategoryBlock({
             exit="logo-out"
             default="none"
           >
+            {/* ★ 카드 바깥 구조(ViewTransition 직속 div)는 로고 유무와 무관하게 항상 같다.
+                안쪽만 이미지/텍스트로 갈린다 — 트리 모양이 갈라지면 전환이 죽는다. */}
             <div className="flex h-20 items-center justify-center rounded-xl border border-border/60 bg-white px-3 text-center text-sm font-semibold text-text-default transition hover:border-primary/40 hover:shadow-sm">
-              <span className="line-clamp-2 leading-tight">{logo}</span>
+              {PARTNER_LOGO[logo] ? (
+                // 로고마다 종횡비가 달라 object-contain 으로 카드 안에 맞춘다.
+                // 원본이 흰 배경 카드라 bg-white 위에서 자연스럽게 얹힌다.
+                <img
+                  src={PARTNER_LOGO[logo]}
+                  alt={logo}
+                  loading="lazy"
+                  decoding="async"
+                  className="max-h-full w-full object-contain"
+                />
+              ) : (
+                <span className="line-clamp-2 leading-tight">{logo}</span>
+              )}
             </div>
           </ViewTransition>
         ))}
