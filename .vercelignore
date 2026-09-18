@@ -1,0 +1,24 @@
+.env*
+node_modules
+.next
+.git
+.vercel
+*.bak-*
+# --- 에이전트 세션 산출물 (2026-09-18 추가) ---
+# vercel CLI 는 .gitignore 를 읽지 않는다. 수동 배포(`vercel --prod`)는 커밋이 아니라
+# 로컬 working tree 를 통째로 올리므로, 여기 없으면 그대로 프로덕션 번들에 실린다.
+# 실제로 insta-site 배포 9건 전부에 관리자 자격증명이 실려 있었다.
+.claude/
+.playwright-mcp/
+
+# --- 자격증명 ---
+.admin-credentials.txt
+.gfa-tokens.json
+*.p8
+client_secret*.json
+credentials*.json
+google-ads.yaml
+token*.json
+auth_state*.json
+*storageState*.json
+.secrets/
