@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Container } from "./Container";
 import { LogoMark } from "./Logo";
 import content from "@/content/content.json";
@@ -51,12 +52,12 @@ export function SiteFooter() {
           </h3>
           <ul className="mt-4 grid grid-cols-2 gap-2 text-sm text-white/85">
             {[
-              { href: "#why", label: "강점" },
-              { href: "#services", label: "서비스" },
-              { href: "#cases", label: "성과" },
-              { href: "#team", label: "팀" },
-              { href: "#partners", label: "파트너" },
-              { href: "#contact", label: "문의" },
+              { href: "/#why", label: "강점" },
+              { href: "/#services", label: "서비스" },
+              { href: "/#cases", label: "성과" },
+              { href: "/#team", label: "팀" },
+              { href: "/#partners", label: "파트너" },
+              { href: "/#contact", label: "문의" },
             ].map((l) => (
               <li key={l.href}>
                 <a href={l.href} className="hover:text-white">
@@ -71,7 +72,13 @@ export function SiteFooter() {
       <div className="border-t border-white/10">
         <Container className="flex flex-col items-center justify-between gap-2 py-5 text-xs text-white/55 sm:flex-row">
           <p>© {new Date().getFullYear()} {c.name_ko} ({c.name_en}). All rights reserved.</p>
-          <p>Made with care for our clients.</p>
+          <div className="flex items-center gap-3">
+            <Link href="/privacy" className="font-semibold text-white/80 hover:text-white">
+              개인정보 처리방침
+            </Link>
+            <span aria-hidden>·</span>
+            <p>Made with care for our clients.</p>
+          </div>
         </Container>
       </div>
     </footer>
