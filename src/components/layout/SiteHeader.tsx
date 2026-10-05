@@ -10,11 +10,11 @@ import { LogoMark } from "./Logo";
 import { cn } from "@/lib/utils";
 
 const NAV = [
-  { label: "강점", href: "#why" },
-  { label: "서비스", href: "#services" },
-  { label: "성과", href: "#cases" },
-  { label: "팀", href: "#team" },
-  { label: "파트너", href: "#partners" },
+  { label: "강점", href: "/#why" },
+  { label: "서비스", href: "/#services" },
+  { label: "성과", href: "/#cases" },
+  { label: "팀", href: "/#team" },
+  { label: "파트너", href: "/#partners" },
 ];
 
 export function SiteHeader() {
@@ -24,7 +24,7 @@ export function SiteHeader() {
     <header className="sticky top-0 z-40 w-full border-b border-border/60 bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/70">
       <Container className="flex h-16 items-center justify-between">
         <Link
-          href="#top"
+          href="/#top"
           className="flex items-center gap-2 text-lg font-extrabold tracking-tight text-text-strong"
         >
           <LogoMark className="h-7 w-7 shrink-0 text-primary" />
@@ -46,15 +46,15 @@ export function SiteHeader() {
           ))}
         </nav>
 
-        <a
-          href="#contact"
+        <Link
+          href="/#contact"
           className={cn(
             buttonVariants({ size: "lg" }),
             "hidden bg-primary text-base font-semibold text-white hover:bg-primary-strong md:inline-flex",
           )}
         >
           문의하기
-        </a>
+        </Link>
 
         <Sheet open={open} onOpenChange={setOpen}>
           <SheetTrigger
@@ -94,13 +94,13 @@ export function SiteHeader() {
                     {item.label}
                   </a>
                 ))}
-                <a
-                  href="#contact"
+                <Link
+                  href="/#contact"
                   onClick={() => setOpen(false)}
                   className="mt-4 rounded-md bg-primary px-3 py-3 text-center text-base font-semibold text-white hover:bg-primary-strong"
                 >
                   문의하기
-                </a>
+                </Link>
               </nav>
             </div>
           </SheetContent>

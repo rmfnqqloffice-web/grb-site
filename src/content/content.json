@@ -7,7 +7,14 @@
     "domain": "grb-mkt.com",
     "phone": "010-5385-6564",
     "email": "rmfnqql.office@grb-mkt.com",
-    "closing_message": "당신의 선택이 기업의 미래가 됩니다."
+    "closing_message": "당신의 선택이 기업의 미래가 됩니다.",
+    "legal": {
+      "trade_name": "▢",
+      "ceo": "▢",
+      "biz_no": "▢",
+      "address": "▢",
+      "privacy_officer": "▢"
+    }
   },
   "intro": {
     "slide": 2,
