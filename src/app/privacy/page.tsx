@@ -10,14 +10,14 @@ export const metadata: Metadata = {
 
 // Meta 앱(GroupB Site Dashboard) 운영 모드 전환에 필요한 공개 처리방침 URL.
 // 데이터 삭제 안내 URL 은 이 페이지의 #data-deletion 이다.
-// ⚠️ 표준 초안 — 사업자 정보(content.json company.legal 의 ▢)를 채우기 전에는 배포하지 않는다.
-//    배포 전 법무 검토를 권장한다.
+// 사업자 정보는 content.json company.legal — 사업자등록증 표기 그대로 둔다(Meta 비즈니스 인증과 대조된다).
+// ⚠️ 표준 초안 수준의 문안이다. 법무 검토를 권장한다.
 const UPDATED = "2026-10-05";
 
 export default function PrivacyPolicyPage() {
   const c = content.company;
   const legal = c.legal;
-  const tradeName = legal.trade_name === "▢" ? `${c.name_ko}(${c.name_en})` : legal.trade_name;
+  const tradeName = `${legal.trade_name}(${c.name_en})`;
 
   return (
     <Container className="max-w-3xl py-16 sm:py-20">
