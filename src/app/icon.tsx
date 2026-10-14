@@ -1,5 +1,13 @@
 import { ImageResponse } from "next/og";
-import { logoDataUri } from "@/lib/logo";
+
+// 파비콘 전용 작은 마크. 원본 로고(src/lib/logo.ts)의 5겹 B 는 16px 에서 선이 붙어 얼룩이 된다.
+// 프레임·색은 그대로 두고 B 를 굵은 한 줄로 줄였다. 헤더(LogoMark)·OG 는 원본을 계속 쓴다.
+// viewBox 를 프레임 바깥선(3~61)에 맞춰 원본처럼 28px·사방 2px 여백으로 들어가게 했다.
+const MARK_SVG =
+  '<svg xmlns="http://www.w3.org/2000/svg" viewBox="3 3 58 58"><g fill="none" stroke="#5cb98a" stroke-linejoin="round">' +
+  '<rect x="5" y="5" width="54" height="54" stroke-width="4"/>' +
+  '<path d="M22 15 V49 M22 15 H35 A8.5 8.5 0 0 1 35 32 H22 M22 32 H37 A8.5 8.5 0 0 1 37 49 H22" stroke-width="5.5"/></g></svg>';
+const MARK_SRC = `data:image/svg+xml;base64,${Buffer.from(MARK_SVG).toString("base64")}`;
 
 export const size = {
   width: 32,
@@ -29,7 +37,7 @@ export default function Icon() {
           justifyContent: "center",
         }}
       >
-        <img src={logoDataUri("#5cb98a")} width={28} height={28} alt="" />
+        <img src={MARK_SRC} width={28} height={28} alt="" />
       </div>
     ),
     size,
