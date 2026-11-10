@@ -68,20 +68,21 @@
       "type": "sticky",
       "items": [
         {
-          "label": "강점",
-          "anchor": "#why"
+          "label": "성과",
+          "anchor": "#cases",
+          "when": "공개할 사례가 있을 때만"
         },
         {
           "label": "서비스",
           "anchor": "#services"
         },
         {
-          "label": "성과",
-          "anchor": "#cases"
+          "label": "도구",
+          "anchor": "#tools"
         },
         {
-          "label": "팀",
-          "anchor": "#team"
+          "label": "일하는 방식",
+          "anchor": "#process"
         },
         {
           "label": "파트너",
@@ -105,11 +106,22 @@
           ]
         },
         {
-          "title": "Contact",
+          "title": "연락처",
           "items": [
             "010-5385-6564",
             "rmfnqql.office@grb-mkt.com",
             "grb-mkt.com"
+          ]
+        },
+        {
+          "title": "바로가기",
+          "items": [
+            "성과(사례가 있을 때만)",
+            "서비스",
+            "도구",
+            "일하는 방식",
+            "파트너",
+            "문의"
           ]
         }
       ]

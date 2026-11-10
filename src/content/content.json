@@ -29,10 +29,10 @@
   "services": {
     "section_title": "Services",
     "heading": [
-      "광고주에게 필요한 것만,",
-      "정확하게 제안합니다"
+      "그룹비가 맡는",
+      "다섯 가지 일"
     ],
-    "description": "지금 그룹비가 맡고 있는 다섯 가지 일입니다.",
+    "description": "네이버·구글 광고부터 측정과 쇼핑 피드까지.",
     "items": [
       {
         "key": "search",
@@ -60,8 +60,8 @@
       {
         "key": "content",
         "name": "콘텐츠·AI 검색",
-        "body": "블로그 원고와 브랜드 콘텐츠를 만들고, ChatGPT 같은 AI 검색에 브랜드가 인용되도록 다듬습니다(AEO·GEO).",
-        "proof": "직접 만든 진단 도구로 AI 검색 노출을 작업 전후로 잽니다."
+        "body": "블로그 원고와 브랜드 콘텐츠를 만들고, ChatGPT 같은 AI 검색 답변에 브랜드가 인용될 가능성을 높입니다(AEO·GEO).",
+        "proof": "작업 전후의 AI 검색 노출을 직접 만든 진단 도구로 비교합니다."
       },
       {
         "key": "sns",
@@ -71,13 +71,12 @@
       {
         "key": "data",
         "name": "측정·데이터",
-        "body": "GA4·GTM으로 전환을 정확히 측정하고, 매달 숫자로 보고합니다.",
-        "proof": "매체별 숫자를 한 화면에 모아 월간 보고서를 만듭니다."
+        "body": "GA4·GTM(구글 분석·태그 관리)으로 전환을 빠짐없이 측정하고, 매달 숫자로 보고합니다."
       },
       {
         "key": "commerce",
         "name": "커머스 운영",
-        "body": "스마트스토어 상품 등록·쇼핑 피드(EP)를 정리해 쇼핑 검색에서 빠지는 상품을 줄입니다."
+        "body": "스마트스토어 상품 등록과 쇼핑 피드(EP, 네이버 쇼핑에 상품 정보를 보내는 파일)를 정리하고 노출 누락 원인을 점검합니다."
       }
     ]
   },
@@ -88,28 +87,28 @@
     "items": []
   },
   "tools": {
-    "heading": "그룹비가 직접 만든 도구",
-    "description": "보고와 진단에 쓰는 도구를 직접 만들어 씁니다.",
+    "heading": "그룹비가 만들어 쓰는 도구",
+    "description": "광고 성과 보고, 업계 이슈 브리핑, AI 검색 노출 진단.",
     "items": [
-      {
-        "key": "news",
-        "name": "업계 이슈 브리핑",
-        "body": "매일 업계 뉴스를 추려 카드뉴스로 만듭니다.",
-        "image": "/images/tools/news.webp",
-        "imageWidth": 1080,
-        "imageHeight": 500,
-        "alt": "업계 이슈 브리핑 화면. 오늘의 주요 기사 목록과 카드뉴스 만들기 버튼이 보입니다.",
-        "note": "실제 화면 (공개 뉴스라 광고주 정보 없음)"
-      },
       {
         "key": "ads",
         "name": "광고 성과·보고",
         "body": "매체별 성과를 한 화면에서 보고 월간 보고서를 만듭니다.",
         "image": "/images/tools/ads.webp",
-        "note": "실제 화면 (광고주 이름과 숫자는 가림)",
+        "note": "실제 운영 화면 (광고주 이름과 숫자는 가림)",
         "imageWidth": 1065,
         "imageHeight": 682,
         "alt": "광고 성과 대시보드 화면. 광고비·전환매출·ROAS 카드와 보고서 메뉴가 보이고, 광고주 이름과 숫자는 가렸습니다."
+      },
+      {
+        "key": "news",
+        "name": "업계 이슈 브리핑",
+        "body": "매일 업계 뉴스를 모아 카드뉴스 초안을 만듭니다.",
+        "image": "/images/tools/news.webp",
+        "imageWidth": 1080,
+        "imageHeight": 500,
+        "alt": "업계 이슈 브리핑 화면. 오늘의 주요 기사 목록과 카드뉴스 만들기 버튼이 보입니다.",
+        "note": "실제 운영 화면"
       },
       {
         "key": "aeo",
@@ -297,7 +296,8 @@
     "headline": "당신의 선택이 기업의 미래가 됩니다.",
     "phone": "010-5385-6564",
     "email": "rmfnqql.office@grb-mkt.com",
-    "website": "grb-mkt.com"
+    "website": "grb-mkt.com",
+    "body": "전화나 이메일로 지금 광고 운영 상황을 알려 주시면 진단부터 안내해 드립니다."
   },
   "brand_colors_observed": {
     "service_palette": [

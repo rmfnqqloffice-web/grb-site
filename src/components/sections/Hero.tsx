@@ -37,7 +37,7 @@ export function Hero() {
           </Reveal>
 
           <Reveal delay={150}>
-            <div className="mt-8 max-w-xl space-y-1.5 text-base text-white/90 sm:text-lg">
+            <div className="mt-8 max-w-xl space-y-1.5 text-base text-white sm:text-lg">
               {intro.body.map((line) => (
                 <p key={line}>{line}</p>
               ))}
@@ -74,8 +74,8 @@ export function Hero() {
           </SpinBadge>
 
           {proof ? (
-            <div className="rounded-[24px] bg-secondary p-7 shadow-[0_24px_60px_-20px_rgba(15,23,42,0.55)] sm:p-9">
-              <p className="pr-16 text-[13px] font-bold text-primary-bright">
+            <div className="rounded-[24px] bg-secondary p-7 shadow-2xl shadow-secondary/40 sm:p-9">
+              <p className="pr-16 text-sm font-bold text-primary-bright">
                 {proof.industry} · {proof.period}
               </p>
               {/* 첫 화면에 바로 보이는 숫자라 세지 않고 최종값을 그대로 둔다(공유 미리보기·검색에도 같은 값) */}
@@ -91,25 +91,28 @@ export function Hero() {
               </a>
             </div>
           ) : (
-            <nav
-              aria-label="그룹비 서비스"
-              className="rounded-[24px] bg-secondary p-7 shadow-[0_24px_60px_-20px_rgba(15,23,42,0.55)] sm:p-9"
-            >
-              <p className="pr-16 text-[13px] font-bold text-primary-bright">그룹비가 맡는 일</p>
-              <ul className="mt-4 divide-y divide-white/10">
+            // 줄마다 서비스 구역의 해당 칸으로 바로 간다(머리 메뉴와 겹치지 않게 nav 랜드마크는 두지 않는다)
+            <div className="rounded-[24px] bg-secondary p-7 shadow-2xl shadow-secondary/40 sm:p-9">
+              <p id="hero-services" className="pr-16 text-sm font-bold text-primary-bright">
+                그룹비가 맡는 일
+              </p>
+              <ul aria-labelledby="hero-services" className="mt-4 divide-y divide-white/10">
                 {services.items.map((s) => (
                   <li key={s.key}>
                     <a
-                      href="#services"
-                      className="flex items-center justify-between gap-4 py-3.5 text-lg font-extrabold tracking-[-0.02em] text-white transition hover:text-primary-bright focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-bright"
+                      href={`#service-${s.key}`}
+                      className="group flex items-center justify-between gap-4 py-3.5 text-lg font-extrabold tracking-[-0.02em] text-white transition hover:text-primary-bright focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-bright"
                     >
                       {s.name}
-                      <ArrowRight className="h-4 w-4 shrink-0 text-white/50" aria-hidden />
+                      <ArrowRight
+                        className="h-4 w-4 shrink-0 text-white/70 transition group-hover:translate-x-1 group-hover:text-primary-bright motion-reduce:transition-none motion-reduce:group-hover:translate-x-0"
+                        aria-hidden
+                      />
                     </a>
                   </li>
                 ))}
               </ul>
-            </nav>
+            </div>
           )}
         </Reveal>
       </Container>

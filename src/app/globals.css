@@ -76,6 +76,8 @@
 
 html {
   -webkit-text-size-adjust: 100%;
+  /* 고정 머리 메뉴(64px) 아래로 구역 제목이 숨지 않게 — 메뉴·바로가기 링크 공통 */
+  scroll-padding-top: 5rem;
 }
 
 body {
@@ -146,6 +148,10 @@ body {
 }
 .animate-marquee {
   animation: marquee var(--marquee-duration, 30s) linear infinite;
+}
+/* 마우스를 올리면 멈춘다(움직이는 글을 멈출 방법 — WCAG 2.2.2). 동작 줄이기 설정이면 처음부터 멈춰 있다. */
+:hover > .animate-marquee {
+  animation-play-state: paused;
 }
 
 /* 히어로 아웃라인 타이포 — 미지원 브라우저는 반투명 흰색으로 폴백 */

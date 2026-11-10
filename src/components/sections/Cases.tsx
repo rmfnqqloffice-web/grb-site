@@ -8,6 +8,7 @@ import content from "@/content/content.json";
 // 성과 사례(메인 개편, 시안 2) — 큰 사례 1건(이전 → 그룹비 운영 후) + 작은 사례 최대 2건.
 // 같은 모양 카드 3장을 늘어놓지 않는다. 서버에서만 그려 사례 데이터를 브라우저 묶음에 싣지 않는다.
 // 공개할(광고주 동의를 받은) 사례가 없으면 구역 자체를 그리지 않는다 — 메뉴의 "성과"도 함께 빠진다.
+// 히어로 카드가 첫 사례의 숫자를 맛보기로 보여 주고, 여기서 그 상세(표)를 보여 준다.
 export function Cases() {
   if (CASES.length === 0) return null;
   const [lead, ...rest] = CASES;
@@ -32,7 +33,8 @@ export function Cases() {
             <LeadCase item={lead} />
           </Reveal>
           {small.length > 0 && (
-            <div className="grid content-start gap-8">
+            // 오른쪽 열을 큰 카드 높이에 맞춰 위아래로 벌린다(큰 카드 옆이 비지 않게)
+            <div className="grid gap-8 lg:content-between">
               {small.map((s, i) => (
                 <Reveal key={s.id} delay={120 + i * 90}>
                   <SmallCase item={s} />
@@ -42,7 +44,7 @@ export function Cases() {
           )}
         </div>
 
-        <p className="mt-8 text-xs text-text-subtle">{c.note}</p>
+        <p className="mt-8 text-xs text-text-muted">{c.note}</p>
       </Container>
     </section>
   );
@@ -50,11 +52,15 @@ export function Cases() {
 
 function LeadCase({ item }: { item: CaseItem }) {
   const hasBefore = item.metrics.some((m) => m.before);
+  const labelId = `case-${item.id}`;
   return (
-    <article className="h-full rounded-[24px] border border-border bg-white p-7 shadow-[0_18px_50px_-30px_rgba(27,43,68,0.45)] sm:p-9">
-      <p className="text-[13px] font-bold text-primary-strong">
+    <article
+      aria-labelledby={labelId}
+      className="h-full rounded-[24px] border border-border bg-white p-7 shadow-xl shadow-secondary/10 sm:p-9"
+    >
+      <h3 id={labelId} className="text-sm font-bold text-primary-strong">
         {item.industry} · {item.period}
-      </p>
+      </h3>
       <p className="mt-4 text-6xl font-black leading-none tracking-[-0.04em] text-primary sm:text-7xl">
         <CaseNumber value={item.headline.value} />
       </p>
@@ -65,12 +71,9 @@ function LeadCase({ item }: { item: CaseItem }) {
         <table className="mt-7 w-full border-collapse text-sm">
           <caption className="sr-only">{item.industry} 이전과 그룹비 운영 후 비교</caption>
           <thead>
-            <tr className="text-left text-xs text-text-subtle">
+            <tr className="text-left text-xs text-text-muted">
               <th scope="col" className="pb-2 font-semibold">항목</th>
               <th scope="col" className="pb-2 font-semibold">이전</th>
-              <th scope="col" className="pb-2 font-semibold">
-                <span className="sr-only">에서</span>
-              </th>
               <th scope="col" className="pb-2 font-semibold">그룹비 운영 후</th>
             </tr>
           </thead>
@@ -78,11 +81,15 @@ function LeadCase({ item }: { item: CaseItem }) {
             {item.metrics.map((m) => (
               <tr key={m.label} className="border-t border-border align-middle">
                 <th scope="row" className="py-3 pr-3 text-left font-medium text-text-default">{m.label}</th>
-                <td className="py-3 pr-2 text-text-subtle tabular-nums">{m.before ?? ""}</td>
-                <td className="py-3 pr-2 text-primary" aria-hidden>
-                  <ArrowRight className="h-4 w-4" />
+                <td className="py-3 pr-3 text-text-muted tabular-nums">
+                  {m.before ?? <span className="sr-only">없음</span>}
                 </td>
-                <td className="py-3 font-extrabold text-secondary tabular-nums">{m.after}</td>
+                <td className="py-3 font-extrabold text-secondary tabular-nums">
+                  <span className="inline-flex items-center gap-2">
+                    <ArrowRight className="h-4 w-4 shrink-0 text-primary" aria-hidden />
+                    {m.after}
+                  </span>
+                </td>
               </tr>
             ))}
           </tbody>
@@ -91,7 +98,7 @@ function LeadCase({ item }: { item: CaseItem }) {
         <dl className="mt-7 grid gap-x-6 gap-y-4 border-t border-border pt-5 sm:grid-cols-3">
           {item.metrics.map((m) => (
             <div key={m.label}>
-              <dt className="text-xs text-text-subtle">{m.label}</dt>
+              <dt className="text-xs text-text-muted">{m.label}</dt>
               <dd className="mt-1 text-xl font-extrabold text-secondary tabular-nums">{m.after}</dd>
             </div>
           ))}
@@ -102,11 +109,12 @@ function LeadCase({ item }: { item: CaseItem }) {
 }
 
 function SmallCase({ item }: { item: CaseItem }) {
+  const labelId = `case-${item.id}`;
   return (
-    <article className="border-t-2 border-secondary pt-5">
-      <p className="text-[13px] font-bold text-primary-strong">
+    <article aria-labelledby={labelId} className="border-t-2 border-secondary pt-5">
+      <h3 id={labelId} className="text-sm font-bold text-primary-strong">
         {item.industry} · {item.period}
-      </p>
+      </h3>
       <p className="mt-2 text-4xl font-black leading-none tracking-[-0.04em] text-secondary">
         <CaseNumber value={item.headline.value} />
       </p>

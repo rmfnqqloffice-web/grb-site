@@ -10,6 +10,9 @@ import { LogoMark } from "./Logo";
 import { cn } from "@/lib/utils";
 import { CASES } from "@/lib/cases";
 
+// 키보드 포커스 링 — 전역 outline-ring/50(반투명 초록 1px)은 흰 머리글 위에서 거의 안 보인다
+const FOCUS = "rounded-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-strong";
+
 // 메인 개편 구역 순서와 같게. "성과"는 공개할 사례가 있을 때만(사례 구역이 없으면 갈 곳이 없다).
 const NAV = [
   ...(CASES.length ? [{ label: "성과", href: "/#cases" }] : []),
@@ -27,7 +30,7 @@ export function SiteHeader() {
       <Container className="flex h-16 items-center justify-between">
         <Link
           href="/#top"
-          className="flex items-center gap-2 text-lg font-extrabold tracking-tight text-text-strong"
+          className={cn("flex items-center gap-2 text-lg font-extrabold tracking-tight text-text-strong", FOCUS)}
         >
           <LogoMark className="h-7 w-7 shrink-0 text-primary" />
           그룹비
@@ -41,6 +44,7 @@ export function SiteHeader() {
               className={cn(
                 "text-sm font-medium text-text-muted transition-colors",
                 "hover:text-text-strong",
+                FOCUS,
               )}
             >
               {item.label}
@@ -91,7 +95,7 @@ export function SiteHeader() {
                     key={item.href}
                     href={item.href}
                     onClick={() => setOpen(false)}
-                    className="rounded-md px-3 py-3 text-base font-medium text-text-default hover:bg-neutral"
+                    className={cn("rounded-md px-3 py-3 text-base font-medium text-text-default hover:bg-neutral active:bg-neutral", FOCUS)}
                   >
                     {item.label}
                   </a>
@@ -99,7 +103,7 @@ export function SiteHeader() {
                 <Link
                   href="/#contact"
                   onClick={() => setOpen(false)}
-                  className="mt-4 rounded-md bg-primary px-3 py-3 text-center text-base font-semibold text-white hover:bg-primary-strong"
+                  className="mt-4 rounded-md bg-primary px-3 py-3 text-center text-base font-semibold text-white hover:bg-primary-strong focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-strong"
                 >
                   문의하기
                 </Link>

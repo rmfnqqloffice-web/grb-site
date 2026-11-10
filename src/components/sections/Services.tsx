@@ -11,7 +11,7 @@ type Service = {
   proof?: string;
 };
 
-// 칸마다 자리·바탕을 다르게(벤토 5칸, 빈 칸 없음) — 같은 크기 카드 7장이 늘어서 마지막 한 장이 혼자 남던 것을 대신한다.
+// 칸마다 자리·바탕을 다르게(벤토 정확히 5칸) — 같은 크기 카드 7장이 늘어서 마지막 한 장이 혼자 남던 것을 대신한다.
 // 넓은 화면 12열: 검색·쇼핑(5열, 두 줄) | 콘텐츠(7열) / SNS(4열) · 측정(3열) / 커머스(전체 폭, 가로형).
 const CELL: Record<string, { box: string; tone: "green" | "navy" | "white" | "soft" }> = {
   search: { box: "md:col-span-2 lg:col-span-5 lg:row-span-2", tone: "green" },
@@ -52,13 +52,15 @@ export function Services() {
             const dark = cell.tone === "green" || cell.tone === "navy";
             const wide = item.key === "commerce";
             return (
-              <li key={item.key} className={cn(cell.box, "min-w-0")}>
+              // 히어로의 서비스 목록이 칸마다 바로 가도록 id(머리 메뉴 높이만큼 위 여백)
+              <li key={item.key} id={`service-${item.key}`} className={cn(cell.box, "min-w-0 scroll-mt-24")}>
                 <Reveal delay={(idx % 3) * 80} className="h-full">
                   <article
                     className={cn(
-                      "flex h-full flex-col rounded-[22px] p-6 sm:p-7",
+                      "flex h-full flex-col rounded-[24px] p-7 sm:p-8",
                       TONE[cell.tone],
-                      wide && "lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] lg:items-center lg:gap-8",
+                      // 12열 기준 5:7 — 설명 시작선이 위 네이비 칸의 글 시작선과 맞는다
+                      wide && "lg:grid lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:items-center lg:gap-8",
                     )}
                   >
                     <h3
@@ -79,8 +81,9 @@ export function Services() {
                       {item.body}
                     </p>
 
+                    {/* 두 줄 높이 칸 — 상품 줄을 칸 높이에 고르게 펼쳐 아래가 비지 않게 */}
                     {item.products && (
-                      <dl className="mt-6 divide-y divide-white/15 border-t border-white/15">
+                      <dl className="mt-6 flex flex-1 flex-col justify-evenly divide-y divide-white/15 border-t border-white/15">
                         {item.products.map((p) => (
                           <div key={p.name} className="grid grid-cols-[6.5rem_minmax(0,1fr)] gap-3 py-3 text-sm">
                             <dt className="font-bold text-white">{p.name}</dt>
@@ -90,23 +93,19 @@ export function Services() {
                       </dl>
                     )}
 
-                    {/* 근거 줄은 칸 맨 아래에 붙인다(위 글과 최소 20px) */}
+                    {/* 일하는 방식 한 줄 — 칸 맨 아래에 붙인다(위 글과 최소 20px). 초록 칸은 흰 글자(밝은 초록은 대비 3.1:1) */}
                     {item.proof && <span aria-hidden className="block min-h-5 flex-1" />}
                     {item.proof && (
                       <p
                         className={cn(
-                          "flex items-start gap-2 border-t pt-4 text-[13px] font-bold leading-relaxed",
-                          dark ? "border-white/15 text-primary-bright" : "border-primary/25 text-primary-strong",
+                          "border-t pt-4 text-sm font-bold leading-relaxed",
+                          cell.tone === "green"
+                            ? "border-white/15 text-white"
+                            : dark
+                              ? "border-white/15 text-primary-bright"
+                              : "border-primary/25 text-primary-strong",
                         )}
                       >
-                        <span
-                          className={cn(
-                            "shrink-0 rounded-full px-2 py-0.5 text-[11px]",
-                            dark ? "bg-white/10 text-white" : "bg-white text-primary-strong",
-                          )}
-                        >
-                          근거
-                        </span>
                         {item.proof}
                       </p>
                     )}
