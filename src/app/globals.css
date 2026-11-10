@@ -76,6 +76,8 @@
 
 html {
   -webkit-text-size-adjust: 100%;
+  /* 고정 머리 메뉴(64px) 아래로 구역 제목이 숨지 않게 — 메뉴·바로가기 링크 공통 */
+  scroll-padding-top: 5rem;
 }
 
 body {
@@ -147,6 +149,10 @@ body {
 .animate-marquee {
   animation: marquee var(--marquee-duration, 30s) linear infinite;
 }
+/* 마우스를 올리면 멈춘다(움직이는 글을 멈출 방법 — WCAG 2.2.2). 동작 줄이기 설정이면 처음부터 멈춰 있다. */
+:hover > .animate-marquee {
+  animation-play-state: paused;
+}
 
 /* 히어로 아웃라인 타이포 — 미지원 브라우저는 반투명 흰색으로 폴백 */
 .text-stroke-white {
@@ -157,6 +163,24 @@ body {
   .text-stroke-white {
     color: rgba(255, 255, 255, 0.85);
   }
+}
+
+/* 히어로 회전 배지 — 페이지를 내리는 만큼 돈다(CSS 스크롤 연동, 스크롤 이벤트 없음).
+   미지원 브라우저·움직임 줄이기는 12도로 고정. */
+.spin-badge {
+  transform: rotate(12deg);
+}
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .spin-badge {
+      animation: spin-badge linear both;
+      animation-timeline: scroll(root block);
+    }
+  }
+}
+@keyframes spin-badge {
+  from { transform: rotate(12deg); }
+  to { transform: rotate(372deg); }
 }
 
 /* === View Transitions ===
@@ -189,30 +213,6 @@ body {
 }
 @keyframes vt-tile-in {
   from { opacity: 0; scale: 0.94; }
-}
-
-/* 사례 카드 → 상세: 광고주명과 대표 수치가 제자리에서 이어진다.
-   텍스트는 래스터 스냅샷을 확대하면 잔상이 남으므로, 옛 스냅샷을 숨기고
-   새 텍스트를 원해상도로 그린 채 위치만 옮긴다. */
-::view-transition-group(.case-morph) {
-  animation-duration: 420ms;
-  animation-timing-function: cubic-bezier(0.32, 0.72, 0, 1);
-}
-::view-transition-old(.case-morph) {
-  display: none;
-}
-::view-transition-new(.case-morph) {
-  animation: none;
-  object-fit: none;
-  object-position: left top;
-}
-
-/* 상세 본문·돌아가기 버튼 — 수치가 이동하는 동안 뒤늦게 따라 들어온다. */
-::view-transition-old(.case-fade) {
-  animation: 150ms ease-out both vt-tile-out;
-}
-::view-transition-new(.case-fade) {
-  animation: 240ms ease-out 130ms both vt-tile-in;
 }
 
 @media (prefers-reduced-motion: reduce) {

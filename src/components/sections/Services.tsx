@@ -1,9 +1,36 @@
 import { Container } from "@/components/layout/Container";
 import { Reveal } from "@/components/fx/Reveal";
+import { cn } from "@/lib/utils";
 import content from "@/content/content.json";
 
+type Service = {
+  key: string;
+  name: string;
+  body: string;
+  products?: { name: string; body: string }[];
+  proof?: string;
+};
+
+// 칸마다 자리·바탕을 다르게(벤토 정확히 5칸) — 같은 크기 카드 7장이 늘어서 마지막 한 장이 혼자 남던 것을 대신한다.
+// 넓은 화면 12열: 검색·쇼핑(5열, 두 줄) | 콘텐츠(7열) / SNS(4열) · 측정(3열) / 커머스(전체 폭, 가로형).
+const CELL: Record<string, { box: string; tone: "green" | "navy" | "white" | "soft" }> = {
+  search: { box: "md:col-span-2 lg:col-span-5 lg:row-span-2", tone: "green" },
+  content: { box: "md:col-span-2 lg:col-span-7", tone: "navy" },
+  sns: { box: "lg:col-span-4", tone: "white" },
+  data: { box: "lg:col-span-3", tone: "soft" },
+  commerce: { box: "md:col-span-2 lg:col-span-12", tone: "white" },
+};
+
+const TONE = {
+  green: "bg-primary-strong text-white",
+  navy: "bg-secondary text-white",
+  white: "border border-border bg-white text-text-default",
+  soft: "bg-primary-soft text-text-default",
+} as const;
+
 export function Services() {
-  const items = content.services.items;
+  const s = content.services;
+  const items = s.items as Service[];
   return (
     <section id="services" aria-labelledby="services-heading" className="bg-neutral py-20 sm:py-24">
       <Container>
@@ -12,31 +39,82 @@ export function Services() {
             id="services-heading"
             className="text-3xl font-black leading-[1.15] tracking-[-0.04em] text-secondary sm:text-4xl md:text-[44px]"
           >
-            광고주에게 필요한 것만,
+            {s.heading[0]}
             <br />
-            정확하게 제안합니다
+            {s.heading[1]}
           </h2>
-          <p className="mt-4 max-w-[56ch] text-sm text-text-muted sm:text-base">
-            검색·바이럴·모바일·온라인·오프라인·언론·영상 — 7대 마케팅 채널에서 가장
-            적합한 믹스를 설계합니다.
-          </p>
+          <p className="mt-4 max-w-[56ch] text-sm text-text-muted sm:text-base">{s.description}</p>
         </Reveal>
 
-        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {items.map((s, idx) => (
-            <Reveal key={s.no} delay={(idx % 3) * 80}>
-              <article className="h-full rounded-[22px] border-2 border-transparent bg-white p-6 transition duration-200 hover:-translate-y-1 hover:-rotate-[0.5deg] hover:border-primary sm:p-7">
-                <span className="inline-block rounded-full bg-secondary px-3 py-1 text-[11px] font-bold text-white">
-                  {s.name.replace("마케팅", "")}
-                </span>
-                <h3 className="mt-4 text-lg font-extrabold tracking-[-0.02em] text-secondary">
-                  {s.name}
-                </h3>
-                <p className="mt-2 text-[13px] leading-relaxed text-text-muted">{s.body}</p>
-              </article>
-            </Reveal>
-          ))}
-        </div>
+        <ul className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-12">
+          {items.map((item, idx) => {
+            const cell = CELL[item.key] ?? { box: "", tone: "white" as const };
+            const dark = cell.tone === "green" || cell.tone === "navy";
+            const wide = item.key === "commerce";
+            return (
+              // 히어로의 서비스 목록이 칸마다 바로 가도록 id(머리 메뉴 높이만큼 위 여백)
+              <li key={item.key} id={`service-${item.key}`} className={cn(cell.box, "min-w-0 scroll-mt-24")}>
+                <Reveal delay={(idx % 3) * 80} className="h-full">
+                  <article
+                    className={cn(
+                      "flex h-full flex-col rounded-[24px] p-7 sm:p-8",
+                      TONE[cell.tone],
+                      // 12열 기준 5:7 — 설명 시작선이 위 네이비 칸의 글 시작선과 맞는다
+                      wide && "lg:grid lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:items-center lg:gap-8",
+                    )}
+                  >
+                    <h3
+                      className={cn(
+                        "text-xl font-extrabold tracking-[-0.02em] sm:text-2xl",
+                        dark ? "text-white" : "text-secondary",
+                      )}
+                    >
+                      {item.name}
+                    </h3>
+                    <p
+                      className={cn(
+                        "mt-3 text-sm leading-relaxed",
+                        dark ? "text-white/85" : "text-text-muted",
+                        wide && "lg:mt-0",
+                      )}
+                    >
+                      {item.body}
+                    </p>
+
+                    {/* 두 줄 높이 칸 — 상품 줄을 칸 높이에 고르게 펼쳐 아래가 비지 않게 */}
+                    {item.products && (
+                      <dl className="mt-6 flex flex-1 flex-col justify-evenly divide-y divide-white/15 border-t border-white/15">
+                        {item.products.map((p) => (
+                          <div key={p.name} className="grid grid-cols-[6.5rem_minmax(0,1fr)] gap-3 py-3 text-sm">
+                            <dt className="font-bold text-white">{p.name}</dt>
+                            <dd className="text-white/80">{p.body}</dd>
+                          </div>
+                        ))}
+                      </dl>
+                    )}
+
+                    {/* 일하는 방식 한 줄 — 칸 맨 아래에 붙인다(위 글과 최소 20px). 초록 칸은 흰 글자(밝은 초록은 대비 3.1:1) */}
+                    {item.proof && <span aria-hidden className="block min-h-5 flex-1" />}
+                    {item.proof && (
+                      <p
+                        className={cn(
+                          "border-t pt-4 text-sm font-bold leading-relaxed",
+                          cell.tone === "green"
+                            ? "border-white/15 text-white"
+                            : dark
+                              ? "border-white/15 text-primary-bright"
+                              : "border-primary/25 text-primary-strong",
+                        )}
+                      >
+                        {item.proof}
+                      </p>
+                    )}
+                  </article>
+                </Reveal>
+              </li>
+            );
+          })}
+        </ul>
       </Container>
     </section>
   );

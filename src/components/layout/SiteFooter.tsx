@@ -2,11 +2,18 @@ import Link from "next/link";
 import { Container } from "./Container";
 import { LogoMark } from "./Logo";
 import content from "@/content/content.json";
+import { CASES } from "@/lib/cases";
+
+// 네이비 바탕 링크 — 마우스는 밑줄, 키보드는 밝은 초록 테두리
+const LINK =
+  "rounded-sm underline-offset-4 transition-colors hover:text-white hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-bright";
 
 export function SiteFooter() {
   const c = content.company;
+  // 위 바깥 여백을 두지 않는다 — 문의 구역(그린)과 바닥글(네이비) 사이에 흰 띠가 생겼다.
+  // 다른 페이지(개인정보처리방침)는 본문 아래 여백이 있다.
   return (
-    <footer className="mt-24 border-t border-border/60 bg-secondary text-text-on-dark">
+    <footer className="border-t border-border/60 bg-secondary text-text-on-dark">
       <Container className="grid gap-10 py-14 md:grid-cols-3">
         <div>
           <div className="flex items-center gap-2 text-lg font-extrabold">
@@ -19,24 +26,22 @@ export function SiteFooter() {
         </div>
 
         <div>
-          <h3 className="text-sm font-semibold uppercase tracking-wider text-white/60">
-            Contact
-          </h3>
+          <h3 className="text-sm font-semibold text-white/60">연락처</h3>
           <ul className="mt-4 space-y-2 text-sm text-white/85">
             <li>
-              <a href={`tel:${c.phone.replace(/-/g, "")}`} className="hover:text-white">
+              <a href={`tel:${c.phone.replace(/-/g, "")}`} className={LINK}>
                 {c.phone}
               </a>
             </li>
             <li>
-              <a href={`mailto:${c.email}`} className="hover:text-white">
+              <a href={`mailto:${c.email}`} className={LINK}>
                 {c.email}
               </a>
             </li>
             <li>
               <a
                 href={`https://${c.domain}`}
-                className="hover:text-white"
+                className={LINK}
                 target="_blank"
                 rel="noreferrer noopener"
               >
@@ -47,20 +52,19 @@ export function SiteFooter() {
         </div>
 
         <div>
-          <h3 className="text-sm font-semibold uppercase tracking-wider text-white/60">
-            Quick Links
-          </h3>
+          <h3 className="text-sm font-semibold text-white/60">바로가기</h3>
           <ul className="mt-4 grid grid-cols-2 gap-2 text-sm text-white/85">
+            {/* 머리 메뉴와 같은 구역(메인 개편). "성과"는 공개할 사례가 있을 때만 */}
             {[
-              { href: "/#why", label: "강점" },
+              ...(CASES.length ? [{ href: "/#cases", label: "성과" }] : []),
               { href: "/#services", label: "서비스" },
-              { href: "/#cases", label: "성과" },
-              { href: "/#team", label: "팀" },
+              { href: "/#tools", label: "도구" },
+              { href: "/#process", label: "일하는 방식" },
               { href: "/#partners", label: "파트너" },
               { href: "/#contact", label: "문의" },
             ].map((l) => (
               <li key={l.href}>
-                <a href={l.href} className="hover:text-white">
+                <a href={l.href} className={LINK}>
                   {l.label}
                 </a>
               </li>
@@ -73,7 +77,7 @@ export function SiteFooter() {
         <Container className="flex flex-col items-center justify-between gap-2 py-5 text-xs text-white/55 sm:flex-row">
           <p>© {new Date().getFullYear()} {c.name_ko} ({c.name_en}). All rights reserved.</p>
           <div className="flex items-center gap-3">
-            <Link href="/privacy" className="font-semibold text-white/80 hover:text-white">
+            <Link href="/privacy" className={`font-semibold text-white/80 ${LINK}`}>
               개인정보 처리방침
             </Link>
             <span aria-hidden>·</span>

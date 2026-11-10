@@ -179,79 +179,8 @@ const groupNames = (list) =>
   await page.locator('#partners [role="tab"]', { hasText: "전체" }).first().click();
   await page.waitForTimeout(700);
 
-  /* ───────── 시안 B · Cases ───────── */
-  console.log("\n== 시안 B · Cases (카드 → 상세 morph) ==");
-  await page.locator("#cases").scrollIntoViewIfNeeded();
-  // CountUp 이 1300ms 동안 0 → 목표값을 센다. 세는 도중에 누르면 카드와 상세의
-  // 숫자가 달라 morph 가 어긋나므로, 실사용과 같게 완료를 기다린 뒤 클릭한다.
-  await page.waitForTimeout(1800);
-
-  const cardCount = await page.locator("#cases button[aria-label*='자세히 보기']").count();
-  check("카드가 버튼으로 렌더(키보드 접근 가능)", cardCount === 3, `${cardCount}개`);
-
-  // 첫 카드의 수치 텍스트를 기억해 상세에서 같은 값이 나오는지 본다.
-  const kpiBefore = await page
-    .locator("#cases button[aria-label*='자세히 보기']")
-    .first()
-    .locator("p")
-    .nth(1)
-    .innerText();
-
-  await page.evaluate(() => ((window.__vt.calls = []), (window.__vt.groups = [])));
-  await page.locator("#cases button[aria-label*='자세히 보기']").first().click();
-  await page.waitForTimeout(1200);
-
-  const vtB = await page.evaluate(() => window.__vt);
-  check("카드 클릭이 startViewTransition 을 발화시킴", vtB.calls.length > 0, `${vtB.calls.length}회 호출`);
-  const gB = groupNames(vtB.groups);
-  check(
-    "광고주명·수치가 공유 요소로 이어짐",
-    gB.some((n) => n === "case-client-0") && gB.some((n) => n === "case-kpi-0"),
-    gB.filter((n) => n.startsWith("case-")).join(", ") || "case-* 그룹 없음"
-  );
-
-  const backBtn = page.locator("#cases button", { hasText: "사례 전체 보기" });
-  check("상세가 열림", (await backBtn.count()) === 1);
-
-  const detailText = await page.locator("#cases article").innerText();
-  check("상세에 서술(summary) 노출", detailText.includes("이전 대행사와 동일한 예산"));
-  check("상세에 지표표 노출", detailText.includes("집행비용") && detailText.includes("전환단가"));
-
-  const kpiAfter = await page.locator("#cases article p").nth(1).innerText();
-  check("수치가 카드와 동일(morph 대상 일치)", kpiBefore.trim() === kpiAfter.trim(), `"${kpiBefore.trim()}" vs "${kpiAfter.trim()}"`);
-
-  // B업체(2번째)의 집행 추이가 단계로 펼쳐지는지
-  await backBtn.click();
-  await page.waitForTimeout(700);
-  await page.locator("#cases button[aria-label*='자세히 보기']").nth(1).click();
-  await page.waitForTimeout(700);
-  const bText = await page.locator("#cases article").innerText();
-  check(
-    "B업체 집행 추이가 단계로 펼쳐짐",
-    bText.includes("4천만원") && bText.includes("1억원") && !bText.includes("4천만원 · 6천만원"),
-    "join(' · ') 아님"
-  );
-  check("B업체 매체 before→after 노출", bText.includes("모비온") && bText.includes("집행 매체 변화"));
-
-  // 목록 복귀 시 카드가 보이는 상태인지(Reveal 재실행으로 opacity 0 이 되지 않는지)
-  await page.locator("#cases button", { hasText: "사례 전체 보기" }).click();
-  await page.waitForTimeout(900);
-  const opacities = await page.evaluate(() => {
-    const btns = document.querySelectorAll("#cases button[aria-label*='자세히 보기']");
-    return Array.from(btns).map((b) => {
-      let el = b, o = 1;
-      while (el && el !== document.body) {
-        o = Math.min(o, parseFloat(getComputedStyle(el).opacity || "1"));
-        el = el.parentElement;
-      }
-      return o;
-    });
-  });
-  check(
-    "목록 복귀 시 카드가 투명해지지 않음(Reveal 재실행 방지)",
-    opacities.length === 3 && opacities.every((o) => o > 0.9),
-    `opacity: ${opacities.map((o) => o.toFixed(2)).join(", ")}`
-  );
+  /* 시안 B · Cases(카드 → 상세 morph)는 2026-11 메인 개편에서 사례 구역을 큰 사례 1건 + 작은 사례로 바꾸며
+     없앴다(상세를 따로 열지 않는다). 사례 데이터를 브라우저 묶음에 싣지 않으려고 서버 부품이 됐다. */
 
   /* ───────── reduced-motion ───────── */
   console.log("\n== 접근성 ==");

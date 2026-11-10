@@ -22,10 +22,7 @@ export function Contact() {
         </Reveal>
 
         <Reveal delay={120}>
-          <p className="mx-auto mt-6 max-w-2xl text-base text-white/85 sm:text-lg">
-            광고주의 비즈니스에 가장 적합한 마케팅을 함께 설계합니다. 편하신
-            방법으로 그룹비에 문의해 주세요.
-          </p>
+          <p className="mx-auto mt-6 max-w-2xl text-base text-white sm:text-lg">{c.body}</p>
         </Reveal>
 
         <Reveal delay={220}>
@@ -53,7 +50,8 @@ export function Contact() {
               href={`mailto:${c.email}?subject=${encodeURIComponent("[그룹비] 마케팅 문의")}`}
               className="inline-flex items-center gap-1.5 rounded-full bg-secondary px-10 py-4 text-base font-black text-white transition hover:bg-secondary/85 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
             >
-              지금 문의 메일 보내기 <ArrowRight className="h-4 w-4" aria-hidden />
+              {/* 문의 버튼 이름은 페이지 전체에서 하나("문의하기") — 머리·히어로와 같게 */}
+              문의하기 <ArrowRight className="h-4 w-4" aria-hidden />
             </a>
           </div>
         </Reveal>
