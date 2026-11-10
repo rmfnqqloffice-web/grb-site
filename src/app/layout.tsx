@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { buildOrganizationLD } from "@/lib/jsonld";
+import content from "@/content/content.json";
 
 const notoSansKR = Noto_Sans_KR({
   variable: "--font-noto-sans-kr",
@@ -19,15 +20,15 @@ export const metadata: Metadata = {
     default: "그룹비 | 사람의 차이가 마케팅의 차이를 만듭니다",
     template: "%s | 그룹비",
   },
-  description:
-    "그룹비(GROUPB)는 검색·바이럴·모바일·온라인·오프라인·언론·영상 등 7대 마케팅을 전 분야의 전문 마케터가 집행하는 퍼포먼스 마케팅 에이전시입니다.",
+  description: content.company.description,
   keywords: [
     "그룹비",
     "GROUPB",
     "GRB",
     "퍼포먼스 마케팅",
     "검색광고",
-    "바이럴 마케팅",
+    "네이버 검색광고",
+    "AEO",
     "마케팅 에이전시",
   ],
   authors: [{ name: "그룹비", url: "https://grb-mkt.com" }],

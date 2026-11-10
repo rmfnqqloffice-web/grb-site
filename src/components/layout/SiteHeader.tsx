@@ -8,12 +8,14 @@ import { Button, buttonVariants } from "@/components/ui/button";
 import { Container } from "./Container";
 import { LogoMark } from "./Logo";
 import { cn } from "@/lib/utils";
+import { CASES } from "@/lib/cases";
 
+// 메인 개편 구역 순서와 같게. "성과"는 공개할 사례가 있을 때만(사례 구역이 없으면 갈 곳이 없다).
 const NAV = [
-  { label: "강점", href: "/#why" },
+  ...(CASES.length ? [{ label: "성과", href: "/#cases" }] : []),
   { label: "서비스", href: "/#services" },
-  { label: "성과", href: "/#cases" },
-  { label: "팀", href: "/#team" },
+  { label: "도구", href: "/#tools" },
+  { label: "일하는 방식", href: "/#process" },
   { label: "파트너", href: "/#partners" },
 ];
 

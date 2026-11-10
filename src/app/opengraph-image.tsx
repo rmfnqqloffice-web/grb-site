@@ -1,5 +1,6 @@
 import { ImageResponse } from "next/og";
 import { logoDataUri } from "@/lib/logo";
+import content from "@/content/content.json";
 
 export const alt = "그룹비 | 사람의 차이가 마케팅의 차이를 만듭니다";
 export const size = {
@@ -92,7 +93,7 @@ export default function OpenGraphImage() {
           }}
         >
           <div style={{ display: "flex" }}>
-            검색 · 바이럴 · 모바일 · 온라인 · 오프라인 · 언론 · 영상
+            {content.services.items.map((s) => s.name).join(" · ")}
           </div>
           <div style={{ display: "flex", fontWeight: 700, color: "white" }}>
             grb-mkt.com

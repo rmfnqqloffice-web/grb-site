@@ -2,11 +2,14 @@ import Link from "next/link";
 import { Container } from "./Container";
 import { LogoMark } from "./Logo";
 import content from "@/content/content.json";
+import { CASES } from "@/lib/cases";
 
 export function SiteFooter() {
   const c = content.company;
+  // 위 바깥 여백을 두지 않는다 — 문의 구역(그린)과 바닥글(네이비) 사이에 흰 띠가 생겼다.
+  // 다른 페이지(개인정보처리방침)는 본문 아래 여백이 있다.
   return (
-    <footer className="mt-24 border-t border-border/60 bg-secondary text-text-on-dark">
+    <footer className="border-t border-border/60 bg-secondary text-text-on-dark">
       <Container className="grid gap-10 py-14 md:grid-cols-3">
         <div>
           <div className="flex items-center gap-2 text-lg font-extrabold">
@@ -51,11 +54,12 @@ export function SiteFooter() {
             Quick Links
           </h3>
           <ul className="mt-4 grid grid-cols-2 gap-2 text-sm text-white/85">
+            {/* 머리 메뉴와 같은 구역(메인 개편). "성과"는 공개할 사례가 있을 때만 */}
             {[
-              { href: "/#why", label: "강점" },
+              ...(CASES.length ? [{ href: "/#cases", label: "성과" }] : []),
               { href: "/#services", label: "서비스" },
-              { href: "/#cases", label: "성과" },
-              { href: "/#team", label: "팀" },
+              { href: "/#tools", label: "도구" },
+              { href: "/#process", label: "일하는 방식" },
               { href: "/#partners", label: "파트너" },
               { href: "/#contact", label: "문의" },
             ].map((l) => (
