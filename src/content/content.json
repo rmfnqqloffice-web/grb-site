@@ -114,8 +114,11 @@
         "key": "aeo",
         "name": "AI 검색 노출 진단",
         "body": "사이트가 AI 검색에 어떻게 보이는지 점검합니다.",
-        "image": null,
-        "note": ""
+        "image": "/images/tools/aeo.webp",
+        "imageWidth": 1080,
+        "imageHeight": 675,
+        "alt": "AI 검색 노출 진단 첫 화면. 사이트 주소 입력칸과 진단 시작 단추, SEO·AEO·GEO 점검 항목이 보입니다.",
+        "note": "실제 운영 화면"
       }
     ]
   },
