@@ -104,11 +104,11 @@
         "key": "news",
         "name": "업계 이슈 브리핑",
         "body": "매일 업계 뉴스를 모아 카드뉴스 초안을 만듭니다.",
-        "image": "/images/tools/news.webp",
+        "image": "/images/tools/news-briefing.webp",
         "imageWidth": 1080,
         "imageHeight": 500,
         "alt": "업계 이슈 브리핑 화면. 오늘의 주요 기사 목록과 카드뉴스 만들기 버튼이 보입니다.",
-        "note": "실제 운영 화면"
+        "note": "실제 운영 화면 (도구 주소는 가림)"
       },
       {
         "key": "aeo",
